@@ -32,8 +32,7 @@
             const renderContext = {
                 canvasContext: context,
                 viewport: viewport
-            };
-            
+            };  
             await page.render(renderContext).promise;
         }
 
@@ -157,13 +156,10 @@
                 magazine.style.zoom = scale/100;
             }
         });
-
-        
         page__slider.addEventListener('input', (e)=>{
             var page = e.target.value;
             $('#magazine').turn('page', page);
         });
-
         next_button.addEventListener('click',()=>{
             $('#magazine').turn('next');
             console.log(currentPage);
