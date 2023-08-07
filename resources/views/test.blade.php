@@ -15,6 +15,7 @@
         var canvas = document.getElementById('the-canvas1');
         var context = canvas.getContext('2d');
         var currentPage=1;
+        var totalPage = 0;
         var scale = 1;
 
         async function renderPage(pageNumber) {
@@ -36,16 +37,14 @@
             await page.render(renderContext).promise;
         }
 
-        window.addEventListener('load', function() {
-            // if(window.innerWidth<=800){
+        $(window).ready(function() {
+            if(window.innerWidth<=980){
                 $("#magazine").turn("display", "single");
                 setStyleMobile(1);
-                console.log("mobile");
-            // }else {
-            //     $("#magazine").turn("display", "double");
-            //     setStyleLaptop(1);
-            //     console.log("laptop");
-            // }
+            }else {
+                $("#magazine").turn("display", "double");
+                setStyleLaptop(1);
+            }
             loadingTask.promise.then((pdf)=> {
                 $(".total__page").html(pdf.numPages);
                 $(".page__slider").attr("max",pdf.numPages);
@@ -53,7 +52,8 @@
                     element = $("<canvas />", {"id": "the-canvas"+i}).html("Loading...");
                     $("#magazine").turn("addPage", element);  
                 }
-            
+                totalPage=parseInt(pdf.numPages);
+                console.log(totalPage);
                 for (var i = 1; i <= pdf.numPages; i++) {
                     renderPage(i);
                 }
@@ -61,7 +61,17 @@
                 $(".loading_screen").css("display","none");
 
             });
-        }, false);
+        });
+
+        $(window).resize(function() {
+            if(window.innerWidth<=980){
+                $("#magazine").turn("display", "single");
+                setStyleMobile(currentPage);
+            }else{
+                $("#magazine").turn("display", "double");
+                setStyleLaptop(currentPage);
+            }
+        });
         
     </script>
     <script src="{{URL::asset('js/loading.js')}}"></script>
@@ -70,7 +80,9 @@
         //semua event listener
         // var main = document.querySelector('#main');
         var magazine = document.querySelector('#magazine');
-        var main_top = document.querySelector('.magazine_section');
+        var magazine_section = document.querySelector('.magazine_section');
+        var main_top = document.querySelector('.main_top');
+
         var zoom__slider = document.querySelector('.zoom__slider');
         var zoom__control__zoomin = document.querySelector('.zoom__control__zoomin');
         var zoom__control__zoomout = document.querySelector('.zoom__control__zoomout');
@@ -86,51 +98,39 @@
         var scrollStartLeft, scrollStartTop;
         var isDragging = false;
 
-    
-        window.addEventListener('resize', function() {
-            // if(window.innerWidth<=800){
-                $("#magazine").turn("display", "single");
-                setStyleMobile(currentPage);
-            // }else{
-            //     $("#magazine").turn("display", "double");
-            //     setStyleLaptop(currentPage);
-            // }
-        }, false);
-
-
-        main_top.addEventListener('mousedown', (e)=>{
+        magazine_section.addEventListener('mousedown', (e)=>{
             isDragging = true;
             dragStartX = e.clientX  || e.touches[0].clientX;
             dragStartY = e.clientY || e.touches[0].clientY ;
-            scrollStartLeft = main_top.scrollLeft;
+            scrollStartLeft = magazine_section.scrollLeft;
             scrollStartTop = main_top.scrollTop;
         });
-        main_top.addEventListener('mousemove', (e)=>{
+        magazine_section.addEventListener('mousemove', (e)=>{
             if(isDragging){
                 var clientX = e.clientX || e.touches[0].clientX; ;
                 var clientY = e.clientY || e.touches[0].clientY;
-                main_top.scrollLeft = scrollStartLeft - clientX + dragStartX;
-                main_top.scrollTop = scrollStartTop - clientY + dragStartY;
+                magazine_section.scrollLeft = scrollStartLeft - clientX + dragStartX;
+                magazine_section.scrollTop = scrollStartTop - clientY + dragStartY;
             }
         });
 
-        main_top.addEventListener('touchstart', (e)=>{
+        magazine_section.addEventListener('touchstart', (e)=>{
             isDragging = true;
             dragStartX = e.touches[0].clientX ;
             dragStartY = e.touches[0].clientY;
-            scrollStartLeft = main_top.scrollLeft;
-            scrollStartTop = main_top.scrollTop;
+            scrollStartLeft = magazine_section.scrollLeft;
+            scrollStartTop = magazine_section.scrollTop;
         });
-        main_top.addEventListener('touchmove', (e)=>{
+        magazine_section.addEventListener('touchmove', (e)=>{
             if(isDragging){
                 var clientX = e.touches[0].clientX;
                 var clientY = e.touches[0].clientY;
-                main_top.scrollLeft = scrollStartLeft - clientX + dragStartX;
-                main_top.scrollTop = scrollStartTop - clientY + dragStartY;
+                magazine_section.scrollLeft = scrollStartLeft - clientX + dragStartX;
+                magazine_section.scrollTop = scrollStartTop - clientY + dragStartY;
             }
         });
 
-        main_top.addEventListener('mouseup', (e)=>{
+        magazine_section.addEventListener('mouseup', (e)=>{
             isDragging = false;
         });
 
@@ -161,18 +161,15 @@
         
         page__slider.addEventListener('input', (e)=>{
             var page = e.target.value;
-            if(page%2==1){
-                $('#magazine').turn('page', page+1);
-            }else {
-                $('#magazine').turn('page', page);
-            }
-            
+            $('#magazine').turn('page', page);
         });
 
         next_button.addEventListener('click',()=>{
             $('#magazine').turn('next');
+            console.log(currentPage);
         });
         prev_button.addEventListener('click',()=>{
+            page__slider.value = currentPage;
             $('#magazine').turn('previous');
         }); 
         
@@ -216,6 +213,7 @@
         $('#magazine').turn({gradients: true, acceleration: true});
         $("#magazine").bind("turned", function(event, page, view) {
             currentPage = page;
+            page__slider.value = currentPage;
             current__page.innerHTML = $("#magazine").turn("view").join(" - ");
             if($(document).width()<=800){
                 setStyleMobile(page);
@@ -240,7 +238,6 @@
 
         const setStyleLaptop = (page)=> {
         // Set margin
-            marginForOnePage = true;
             magazine2.css({
                 marginTop: originalMarginY,
                 marginBottom: originalMarginY,
@@ -248,13 +245,12 @@
                 marginRight: originalMarginXFirstPage
             });
 
-            if (parseInt(page__slider.max) === parseInt(page) && !marginForOnePage) {
-                marginForOnePage = true;
+            if (totalPage <= page && page!=1) {
                 magazine2.css({
                 marginLeft: originalMarginXLast,
                 marginRight: originalMarginXLast
                 });
-            } else if (page == 1) {
+            } else if (page === 1) {
                 marginForOnePage = true;
                 magazine2.css({
                     marginLeft: originalMarginXFirstPage,
