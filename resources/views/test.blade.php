@@ -120,6 +120,7 @@
             scrollStartLeft = magazine_section.scrollLeft;
             scrollStartTop = magazine_section.scrollTop;
         });
+        
         magazine_section.addEventListener('touchmove', (e)=>{
             if(isDragging){
                 var clientX = e.touches[0].clientX;
