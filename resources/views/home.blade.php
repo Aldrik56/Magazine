@@ -1,3 +1,5 @@
+{{-- ini halaman home (bagiannya kevin) --}}
+
 <?php
 $listMagazine = [
     [
@@ -21,6 +23,7 @@ $listMagazine = [
 <html lang="en">
     @include('components.header')
 <body>
+    @include('components.swiper')
     <div class="home_section">
         @foreach($listMagazine as $magazine)
             <div>
