@@ -1,6 +1,3 @@
-@vite(['resources/css/app.css', 'resources/js/app.js', 
-        'resources/sass/styles.scss','resources/sass/home.scss',
-        'resources/sass/loading.scss','resources/sass/deskripsi.scss'])
 <head>
     <meta charset="UTF-8">
     <title>ULTIMAGZ</title>
