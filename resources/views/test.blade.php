@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    @include('components.header')
-</head>
-<body>
+@include('components.header')
+<body class="main__page">
     @include('loading')
     @include('components.main')
     
