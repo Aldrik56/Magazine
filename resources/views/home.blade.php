@@ -1,4 +1,3 @@
-{{-- ini halaman home (bagiannya kevin) --}}
 
 <?php
 $jumlahBuku=1;
@@ -24,10 +23,10 @@ $listMagazine = [
 
 <html lang="en">
 @include('components.header')
-
 <body class="home__page">
+    @include('components.navbar')
     @include('components.swiper')
-    <div class="home__section" style="display:flex; height:3000px">
+    <!-- <div class="home__section" style="display:flex; height:3000px">
         @foreach($listMagazine as $magazine)
             <div>
                 <canvas id="the-canvas{{$jumlahBuku}}"></canvas>
@@ -38,7 +37,7 @@ $listMagazine = [
                 {{$jumlahBuku++}}
             </div>
         @endforeach
-    </div>
+    </div> -->
 
     <script>
         //ini promise function dari pdf js
@@ -47,10 +46,8 @@ $listMagazine = [
             var loadingTask = pdfjsLib.getDocument(url);
             var scale = 1;
             const context = canvas.getContext('2d');
-            
             const pdf = await loadingTask.promise;
             const page = await pdf.getPage(1);
-            
             const viewport = page.getViewport({ scale: scale });
             canvas.width = viewport.width;
             canvas.height = viewport.height;
@@ -69,7 +66,18 @@ $listMagazine = [
         listMagazine.forEach((magazine, index) => {
             renderPage(index + 1, magazine.url);
         });
+        
 
+        //hamburger menu 
+        const menuButton = document.getElementById('hamburger-menu');
+        let open = false;
+        menuButton.addEventListener('click', function() {
+          open = !open;
+
+          if (open) {
+            //modify styling
+          }
+        });
 
     </script>
 </body>
