@@ -52,6 +52,7 @@ $listMagazine = [
     </div>
 
     @include('components.swiper')
+    @include('components.footer')
     <script>
         //ini promise function dari pdf js
         // async function renderPage(jumlahBuku, url) {
