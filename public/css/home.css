@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* {
+  font-family: Verdana, sans-serif;
+}
+
 nav {
   --textColor: #E92233;
   --borderColor: #f9f9f9;
@@ -22,15 +23,23 @@ nav p {
 nav #hamburger-menu {
   display: none;
 }
-
-.nav__menu {
+nav .nav__menu {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   min-width: 300px;
-  font-family: Verdana;
+}
+nav .nav__menu > *:hover {
+  cursor: pointer;
 }
 
+.home__page .hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 80vh;
+}
 @media screen and (max-width: 800px) {
   nav {
     justify-content: space-between;
@@ -49,6 +58,4 @@ nav #hamburger-menu {
     width: 123px;
     height: 17px;
   }
-}
-
-/*# sourceMappingURL=home.css.map */
+}/*# sourceMappingURL=home.css.map */
