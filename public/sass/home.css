@@ -5,9 +5,17 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 nav {
@@ -36,11 +44,22 @@ nav .nav__menu {
   justify-content: space-evenly;
   align-items: center;
   min-width: 300px;
+  font-weight: bold;
 }
 nav .nav__menu > *:hover {
   cursor: pointer;
 }
 
+.home__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.home__page > * {
+  flex: 1;
+}
 .home__page .hero {
   display: flex;
   justify-content: center;
@@ -55,6 +74,10 @@ nav .nav__menu > *:hover {
   width: 45%;
   flex-wrap: wrap;
   word-wrap: break-word;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
 }
 .home__page .illustration {
   width: 40%;
@@ -104,50 +127,42 @@ nav .nav__menu > *:hover {
   border-color: #E92233;
 }
 
+.swiper > div {
+  flex: 1;
+}
+
 .swiper {
-  width: 100vw;
-  text-transform: capitalize;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: start;
-  padding: 20px;
+  justify-content: center;
+  position: relative;
+  width: 90vw;
+  gap: 20px;
 }
 .swiper h3 {
-  top: 10px;
-  left: 20px;
+  font-size: 2rem;
 }
 .swiper .magazines {
   display: flex;
-  overflow: hidden;
-  max-width: 700px;
-  align-items: center;
-  align-items: center;
   justify-content: start;
-  background: #ED2736;
+  overflow: hidden;
+  max-width: 1200px;
+  width: 90%;
   position: relative;
+  gap: 30px;
 }
-.swiper .magazine {
+.swiper .magazines .magazine {
+  position: relative;
+  transition: 0.5s;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-content: center;
-  align-items: center;
 }
-.swiper .magazine .img__container {
-  height: 284px;
-  width: 180px;
-  position: relative;
-  z-index: 0;
-}
-.swiper .magazine .img__container img {
-  height: 100%;
+.swiper .magazines .magazine .magazine__lightbox {
   width: 100%;
-}
-.swiper .magazine .img__container .magazine__lightbox {
-  width: 97%;
-  height: 0%;
+  height: 90%;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   display: none;
@@ -158,21 +173,25 @@ nav .nav__menu > *:hover {
   z-index: 1;
   transition: 0.5s;
 }
-
-.toggle {
-  background: rgba(250, 250, 250, 0.75);
-  position: absolute;
-  top: 50%;
-  width: 20px;
-  height: 300px;
-  z-index: 2;
+.swiper .magazines .magazine img {
+  height: 284px;
 }
-
-.right {
+.swiper .toggle {
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 150px;
+  z-index: 2;
+  position: absolute;
+  border-radius: 10px;
+  transform: translateY(50%);
+}
+.swiper .right {
   right: 0px;
 }
-
-.left {
+.swiper .left {
   left: 0px;
 }
 
@@ -193,6 +212,9 @@ nav .nav__menu > *:hover {
   nav .logo {
     width: 123px;
     height: 17px;
+  }
+  img {
+    height: 100px;
   }
   .home__page .hero img {
     width: 150px;
