@@ -7,16 +7,18 @@
 
 html {
   overflow-x:hidden;
-
 }
 
 body {
   min-height: 100vh;
+
+  width: 100vw;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 nav {
@@ -71,12 +73,13 @@ nav {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    min-height: 50vh;
+    min-height: 40vh;
     
     .title {
       color:#E92233;
     }
   }
+
 
 
   .content {
@@ -147,41 +150,61 @@ nav {
 }
 
 .swiper {
+  --items-in-view:5;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
   position: relative;
   width: 90vw;
-  gap:20px;
-  
+    
   h3 {
     font-size: 2rem;
+    font-weight:700;
   }
 
   .magazines {
+    --swiperIndex:0;
     display: flex;
     justify-content: start;
+    align-items: center;
     overflow: hidden;
-    max-width: 1200px;
-    width: 90%;
+    max-width: 1250px;
+    width: 100%;
     position: relative;
-    gap:30px;
+   
+
 
     .magazine {
+      
       position: relative;
+      flex: 0 0 calc(100%/var(--items-in-view));
+      max-width: calc(100%/var(--items-in-view));
       transition: 0.5s;
+      
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
-      .magazine__lightbox {
-        width: 100%;
+      
+      .img__container {
+        width: 90%;
         height: 90%;
+        background-color: white;
+        position: relative;
+      }
+
+      img {
+        height: 284px;
+      }
+
+      .magazine__lightbox {
+        width: 90%;
+        height: 100%;
         background-color: rgba(0, 0, 0, 0.7);
         position: absolute;
         display: none;
-        justify-content: center;
+        justify-content: center;  
         align-items: center;
         top: 0;
         left: 5px;
@@ -189,8 +212,11 @@ nav {
         transition: 0.5s;
       }
 
-      img {
-        height: 284px;
+    }
+
+    .magazine:hover {
+      .magazine__lightbox {
+        display: flex;
       }
     }
    
@@ -206,12 +232,12 @@ nav {
     z-index: 2;
     position: absolute;
     border-radius: 10px;
-    transform: translateY(50%);
+    // transform: translateY(-15%);
     
   }
   
   .right {
-    right:0px;
+    right:20px;
   }
   
   .left {
@@ -219,102 +245,34 @@ nav {
   }
   
 }
-// .swiper {
-//   margin-top: 40px;
-//   width: 100vw;
-//   text-transform: capitalize;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: start;
-//   align-items: start;
-//   gap:20px;
+
+
+@media screen and (max-width:1200px) {
+  .magazine {
+    --items-in-view: 3;
+  }
+}
+
   
-//   .swiper-title {
-//     display: flex;
-//     justify-content: center;
-//     align-items: start;  
-    
 
-//     h3 {
-//       font-size: 2.5rem;
-//       text-transform: capitalize;
-//       position: relative;
-//       left:20%;
-//     }
-//   }
-
-//   .functionality-area {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     height: inherit;
-//   }
-
-//   .magazines {
-//     display: flex;
-//     gap:30px;
-//     width: 80%;
-//     overflow: hidden;
-//     align-items: center;
-//     justify-content: start;
-//     background-color: rebeccapurple;
-//     position: relative;
-//   }
-
-//   .magazine {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     justify-content: center;
-//     align-items: center;
-//     position: relative;
-//     left:0px;
-//     transition: 0.2s;
-//     width: 250px;
-    
-//     .img__container {
-//       height: auto;
-//       width: 240px;
-//       position: relative;
-//       z-index: 0;
-
-//       img {
-//         height: 100%;
-//         width: 100%;
-//       }
-
-//       .magazine__lightbox {
-//         width: 97%;
-//         height: 0%;        
-//         background-color: rgba(0,0,0,0.7);
-//         position: absolute;
-//         display: none;
-//         justify-content: center;
-//         align-items: center;
-//         top:0;
-//         left:5px;
-//         z-index: 1;
-//         transition: 0.5s;        
-//       }
-
-//     }
-//   }
-
-// }
-
-
-
-@media screen and (max-width:800px) {
+@media screen and (max-width:700px) {
   nav {
     justify-content: space-between;
     .nav__menu {
       display: none;
       position: absolute;
-      top:0;
+      top:100px;
+
       left:0;
+      flex-direction: column;
+      background-color: white;
+      font-size: 1.5em;
       width: 100%;
+      height: 100%;
+
+      z-index: 3;
     }
+
   
     #hamburger-menu {
       display:block;
@@ -323,33 +281,47 @@ nav {
     .logo {
       width: 123px;
       height: 17px;
-      
-  
     }
   }
 
-  img {
-    height: 100px;
+
+  .magazines {
+    .magazine {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+    }
+    .magazine__lightbox {
+      background-color: red;
+      width: 20%;
+      height: 80%;
+    }
+
+
+
+    
   }
-  // .magazines {
-  //   max-width: 400px;
-  //   .magazine {
-  //     img {
-  //       height: 100px;
-        
-  //     }
-  //   }
-  // }
 
+  .swiper {
 
-  
-  
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+  }
+
   .home__page {
+    margin: 0;
     .hero {
+      gap:20px;
       img {
         width: 150px;
         height: 200px;
       }
+
       .content {
         h1 {
           font-size: 1.2rem;
@@ -360,6 +332,24 @@ nav {
         }
       }
     }
+
+    .hero__buttons {
+      width:100vw;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        width: 100px;
+        font-size: small;
+      }
+    }
+
+    .right {
+      right: 0px;
+    }
+
+    
 
     
   }

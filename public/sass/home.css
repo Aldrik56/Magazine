@@ -11,11 +11,13 @@ html {
 
 body {
   min-height: 100vh;
+  width: 100vw;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 nav {
@@ -65,7 +67,7 @@ nav .nav__menu > *:hover {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  min-height: 50vh;
+  min-height: 40vh;
 }
 .home__page .hero .title {
   color: #E92233;
@@ -132,37 +134,50 @@ nav .nav__menu > *:hover {
 }
 
 .swiper {
+  --items-in-view:5;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
   position: relative;
   width: 90vw;
-  gap: 20px;
 }
 .swiper h3 {
   font-size: 2rem;
+  font-weight: 700;
 }
 .swiper .magazines {
+  --swiperIndex:0;
   display: flex;
   justify-content: start;
+  align-items: center;
   overflow: hidden;
-  max-width: 1200px;
-  width: 90%;
+  max-width: 1250px;
+  width: 100%;
   position: relative;
-  gap: 30px;
 }
 .swiper .magazines .magazine {
   position: relative;
+  flex: 0 0 calc(100% / var(--items-in-view));
+  max-width: calc(100% / var(--items-in-view));
   transition: 0.5s;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
-.swiper .magazines .magazine .magazine__lightbox {
-  width: 100%;
+.swiper .magazines .magazine .img__container {
+  width: 90%;
   height: 90%;
+  background-color: white;
+  position: relative;
+}
+.swiper .magazines .magazine img {
+  height: 284px;
+}
+.swiper .magazines .magazine .magazine__lightbox {
+  width: 90%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   display: none;
@@ -173,8 +188,8 @@ nav .nav__menu > *:hover {
   z-index: 1;
   transition: 0.5s;
 }
-.swiper .magazines .magazine img {
-  height: 284px;
+.swiper .magazines .magazine:hover .magazine__lightbox {
+  display: flex;
 }
 .swiper .toggle {
   background: rgba(255, 255, 255, 0.8);
@@ -186,25 +201,34 @@ nav .nav__menu > *:hover {
   z-index: 2;
   position: absolute;
   border-radius: 10px;
-  transform: translateY(50%);
 }
 .swiper .right {
-  right: 0px;
+  right: 20px;
 }
 .swiper .left {
   left: 0px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
+  .magazine {
+    --items-in-view: 3;
+  }
+}
+@media screen and (max-width: 700px) {
   nav {
     justify-content: space-between;
   }
   nav .nav__menu {
     display: none;
     position: absolute;
-    top: 0;
+    top: 100px;
     left: 0;
+    flex-direction: column;
+    background-color: white;
+    font-size: 1.5em;
     width: 100%;
+    height: 100%;
+    z-index: 3;
   }
   nav #hamburger-menu {
     display: block;
@@ -213,8 +237,27 @@ nav .nav__menu > *:hover {
     width: 123px;
     height: 17px;
   }
-  img {
-    height: 100px;
+  .magazines .magazine {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .magazines img {
+    width: 100%;
+  }
+  .magazines .magazine__lightbox {
+    background-color: red;
+    width: 20%;
+    height: 80%;
+  }
+  .swiper h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  .home__page {
+    margin: 0;
+  }
+  .home__page .hero {
+    gap: 20px;
   }
   .home__page .hero img {
     width: 150px;
@@ -226,5 +269,18 @@ nav .nav__menu > *:hover {
   .home__page .hero .content p {
     margin-top: 30px;
     font-size: 0.8rem;
+  }
+  .home__page .hero__buttons {
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .home__page .hero__buttons div {
+    width: 100px;
+    font-size: small;
+  }
+  .home__page .right {
+    right: 0px;
   }
 }/*# sourceMappingURL=home.css.map */
