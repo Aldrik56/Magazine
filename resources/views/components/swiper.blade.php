@@ -71,15 +71,22 @@ $listMagazine = [
         </button>
     </div>
     <swiper-container class="mySwiper" >
-            @foreach($listMagazine as $magazine)
+            @foreach($magazines as $magazine)
                 <swiper-slide>
                     <canvas id="the-canvas{{$jumlahBuku}}"></canvas>
                     <?php $jumlahBuku++; ?>
+                    <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
+                        <div class='read'>
+                            <strong> <a href='/pdf/{{$magazine->id}}'>Read Now</a></strong>
+                        </div>
+                        <div class='desc'>
+                            <strong><a href='#'>Description</a></strong>
+                        </div>
+                    </div>
                 </swiper-slide>
             @endforeach
       </swiper-container>
 </div>
-
 
   <script>
         const swiperEl = document.querySelector('.mySwiper')
@@ -118,7 +125,10 @@ $listMagazine = [
     //ini promise function dari pdf js
     async function renderPage(url, index) {
         const canvas = document.querySelector('#the-canvas'+index);
-        var loadingTask = pdfjsLib.getDocument(url);
+        const magazineUrl = '{{ asset('storage/') }}/' + url;
+
+        console.log(magazineUrl);
+        var loadingTask = pdfjsLib.getDocument(magazineUrl);
         var scale = 1;
         const context = canvas.getContext('2d');
         
@@ -137,11 +147,14 @@ $listMagazine = [
         await page.render(renderContext).promise;
     }
 
-    //ini buat render semua magazine
-    const listMagazine = @json($listMagazine);
+    // ini buat render semua magazine
+    const listMagazine = @json($magazines);
     listMagazine.forEach((magazine, index) => {
-        renderPage(magazine.url, index + 1);
+        console.log(magazine.file);
+        renderPage( magazine.file, index + 1);
     });
+
+
 
 </script>
 {{-- <div class='swiper'>

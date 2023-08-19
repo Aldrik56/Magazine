@@ -12,7 +12,9 @@
     @endauth
 </div>
 @endif
-{{-- <a href="/create">Create new magazine</a>
+
+
+<a href="/PDFadmin/create">Create new admin</a>
 <table border="1">
     <tr>
         <th>NIM</th>
@@ -20,15 +22,15 @@
         <th>Prodi</th>
         <th>Tindakan</th>
     </tr>
-    @foreach($magazines as $magazine)
+    @foreach($admins as $admin)
     <tr>
-        <td>{{$magazine->judul}}</td>
-        <td>{{$magazine->deskripsi}}</td>
-        <td>{{$magazine->file}}</td>
+        <td>{{$admin->judul}}</td>
+        <td>{{$admin->deskripsi}}</td>
+        <td>{{$admin->file}}</td>
         <td>
-            <a href="/magazines/{{$magazine->id}}">SHOW</a>
-            <a href="/magazines/{{$magazine->id}}/edit">EDIT</a>
-            <form action="/magazines/{{$magazine->id}}" method="post">
+            <a href="/PDFadmin/{{$admin->id}}">SHOW</a>
+            <a href="/PDFadmin/{{$admin->id}}/edit">EDIT</a>
+            <form action="/PDFadmin/{{$admin->id}}" method="post">
                 @method('DELETE')
                 @csrf 
                 <button type="submit">DELETE</button>
@@ -36,4 +38,4 @@
         </td>
     </tr>
     @endforeach
-</table> --}}
+</table>

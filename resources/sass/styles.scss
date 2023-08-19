@@ -4,15 +4,46 @@
 $widthLoadingScreen: 100vw;
 $heightLoadingScreen: 100vh;
 
+
 .main__page {
+    // .even {
+    //     background-image:url(./gradient-page-left.jpg);
+    //     background-size: 1000px 2000px;
+    //     background-position:right top;
+    //     background-repeat:repeat-y;
+    // }
+    
+    // .odd {
+    //     background-image:url(./gradient-page-right.jpg);
+    //     background-position:left top;
+    //     background-repeat:repeat-y;
+    // }
+    .page__slider {
+        width: 100%; // Set the width of the slider
+        height: 8px; // Set the height of the track
+        border-radius: 4px; // Round the edges of the track
+        appearance: none; // Remove default styles
+      
+        &::-webkit-slider-thumb {
+          width: 16px; // Set the width of the thumb
+          height: 16px; // Set the height of the thumb
+          background-color: red; // Set the color of the thumb
+          border: 2px solid red; // Add a border to the thumb
+          border-radius: 50%; // Round the thumb to make it circular
+          appearance: none; // Remove default styles
+          cursor: pointer; // Change cursor to indicate interactivity
+        }
+      }
+      
     display: flex;
     justify-content: center;
+    flex-direction: column;
     padding:0px;
     margin:0px;
     align-items: center;
     min-height: $heightLoadingScreen;
     width: $widthLoadingScreen;
-    overflow: hidden; 
+    overflow-x: hidden; 
 
     .loading_screen {
         width: 100vw;
@@ -33,6 +64,8 @@ $heightLoadingScreen: 100vh;
         height:90vh;
         background-color: #303030;
         display: none;
+        position:relative;
+        // padding:100px 0px;
         /* overflow: hidden; */
     }
     .main_top {
@@ -69,10 +102,13 @@ $heightLoadingScreen: 100vh;
         height:3vh;
         position:absolute;
         z-index: 99;
-        bottom:10vh;
+        bottom:30px;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .prev_button , .next_button {
+        padding:0px 20px;
     }
     .main_top svg {
         width:3vw;
@@ -85,6 +121,9 @@ $heightLoadingScreen: 100vh;
         align-items: center;
         /* grid-area: control; */
         color:white;
+        ::-moz-range-thumb {
+            background-color: red; /* Or any other color you prefer */
+        }
     }
     .pagenumber__control > input {
         width:40vw;
@@ -98,7 +137,24 @@ $heightLoadingScreen: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left:10px;
         /* color:white; */
+    }
+    .zoom__slider {
+        width: 100%; // Set the width of the slider
+        height: 8px; // Set the height of the track
+        border-radius: 4px; // Round the edges of the track
+        appearance: none; // Remove default styles
+      
+        &::-webkit-slider-thumb {
+          width: 16px; // Set the width of the thumb
+          height: 16px; // Set the height of the thumb
+          background-color: red; // Set the color of the thumb
+          border: 2px solid red; // Add a border to the thumb
+          border-radius: 50%; // Round the thumb to make it circular
+          appearance: none; // Remove default styles
+          cursor: pointer; // Change cursor to indicate interactivity
+        }
     }
     .zoom__control__zoomin, .zoom__control__zoomout {
         background-color: transparent;
@@ -125,30 +181,28 @@ $heightLoadingScreen: 100vh;
         display: none;
         width:0px;
     }
-    .next_button {
-        position :absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        right:10vh;
-        z-index:99;
-        /* grid-area: button_next; */
-    }
-    .prev_button {
-        position :absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        left:10vh;
-        z-index:99;
-        /* grid-area: button_prev; */
-    }
+
+    
 
     p{
         margin : 0px;
     }
+    @media only screen and (max-width:1280px){
+        .group_button {
+            position:absolute;
+            display:flex;
+            justify-content: space-between;
+            padding:0px 80px;
+            bottom:30px;
+            width:100%;
+            height:fit-content;
+        }
+    }
 
     @media only screen and (max-width:980px){
+        .zoom__control {
+            display: none;
+        }
         body {
             margin :0px !important;
         }
@@ -167,6 +221,36 @@ $heightLoadingScreen: 100vh;
         #magazine {
             width: 100vw !important;
             height: 100vh !important;
+        }
+        .group_button {
+            position:absolute;
+            display:flex;
+            justify-content: space-between;
+            padding:0px 80px;
+            bottom:30px;
+            width:100%;
+            height:fit-content;
+        }
+    }
+    @media only screen and (max-width:768px){
+        .group_button {
+            position:absolute;
+            display:flex;
+            justify-content: space-between;
+            padding:0px 40px;
+            bottom:30px;
+            width:100%;
+            height:fit-content;
+        }
+    }
+    @media only screen and (max-width:480px){
+        .prev_button , .next_button {
+            padding:0px 5px;
+
+            img {
+                width:35px;
+                height:auto;
+            }
         }
     }
     

@@ -1,5 +1,5 @@
 <nav class='flex'>
-  <img class='logo'src='assets/navbar/Ultimagz-logo.svg'/>
+  <img class='logo' src='{{URL::asset('assets/navbar/Ultimagz-logo.svg')}}'/>
 
   <div class='nav__menu'>
     <p class='text-stone-200'>Home</p>

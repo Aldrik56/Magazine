@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('list_magazines', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
             $table->string('deskripsi');
             $table->string('edisi');
-            $table->string('tanggal_terbit');
-            $table->string('tebal');
+            $table->date('tanggal_terbit');
+            $table->integer('tebal');
             $table->string('bahasa');
             $table->string('file')->nullable();
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('list_magazine');
     }
 };

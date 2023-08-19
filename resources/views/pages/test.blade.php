@@ -3,13 +3,50 @@
 @include('components.header')
 <body class="main__page">
     @include('loading')
-    @include('components.main')
+    @include('components.navbar')
+    <main controls id="main"> 
+        <div class="main_top">
+            <div class="magazine_section">
+                <div id="magazine"class="animated">
+                    <canvas id="the-canvas1"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="control_section">
+            <div class="prev_button">
+                    <img src="{{URL::asset('assets/arrow_left.svg')}}" alt="">
+                </div>
+            <div class="pagenumber__control">
+                <p class="current__page">1</p>
+                
+                <p>/</p>
+                <p class="total__page"></p>
+                <input type="range" class="page__slider" min="1" max="100" value="1" step="1"/>
+            </div>
+            <div class="zoom__control">
+                <input type="image" src="{{URL::asset('assets/minus.svg')}}" class="zoom__control__zoomout" style="padding:0px 5px" value="-">
+                <input type="range" class="zoom__slider" min="100" max="400" value="100" step="1"/>
+                <input type="image" src="{{URL::asset('assets/plus.svg')}}" class="zoom__control__zoomin" style="padding:0px 5px" value="+">
+            </div>
+            <div class="fullscreen_control">
+                <svg viewBox="0 0 36 36"><path d="M27.7 10.29A.98.98 0 0 0 27 10h-4a1 1 0 0 0 0 2h3v3a1 1 0 0 0 2 0v-4a.98.98 0 0 0-.29-.7Zm-19.4 0A.98.98 0 0 1 9 10h4a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-4c0-.28.11-.52.29-.7ZM27.71 25.7A.98.98 0 0 0 28 25v-4a1 1 0 0 0-2 0v3h-3a1 1 0 0 0 0 2h4c.28 0 .52-.11.7-.29Zm-19.42 0A.98.98 0 0 1 8 25v-4a1 1 0 0 1 2 0v3h3a1 1 0 0 1 0 2H9a.98.98 0 0 1-.7-.29Z" fill="currentColor"></path></svg> 
+            </div>
+            <div class="next_button">
+                {{-- <div class="hidden__description"><p>Next</p></div> --}}
+                <img src="{{URL::asset('assets/arrow_right.svg')}}" alt="">
+            </div>
+        </div>
+    </main>
     <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('libraryJs/pdf.worker.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script id="script">
-        const url = '{{ URL::asset('magazine/test.pdf') }}';
-        var loadingTask = pdfjsLib.getDocument(url);
+        // const url = '{{ URL::asset('magazine/test.pdf') }}';
+        const url = @json($magazine);
+        console.log('{{ asset('storage/') }}/' + url.file);
+
+        const pdfurl = '{{ asset('storage/') }}/' + url.file;
+        var loadingTask = pdfjsLib.getDocument(pdfurl);
         var canvas = document.getElementById('the-canvas1');
         var context = canvas.getContext('2d');
         var currentPage=1;
@@ -46,8 +83,15 @@
                 $(".total__page").html(pdf.numPages);
                 $(".page__slider").attr("max",pdf.numPages);
                 for(var i=2;i<=pdf.numPages;i++){
-                    element = $("<canvas />", {"id": "the-canvas"+i}).html("Loading...");
-                    $("#magazine").turn("addPage", element);  
+                    if(i%2==0){
+                        element = $("<canvas />", {"id": "the-canvas"+i,"class":"even"}).html("Loading...");
+                        $("#magazine").turn("addPage", element);  
+                    }else {
+                        element = $("<canvas />", {"id": "the-canvas"+i,"class":"odd"}).html("Loading...");
+                        $("#magazine").turn("addPage", element);
+                    }
+                    // element = $("<canvas />", {"id": "the-canvas"+i}).html("Loading...");
+                    // $("#magazine").turn("addPage", element);  
                 }
                 totalPage=parseInt(pdf.numPages);
                 console.log(totalPage);
@@ -69,13 +113,12 @@
                 setStyleLaptop(currentPage);
             }
         });
-        
     </script>
     <script src="{{URL::asset('js/loading.js')}}"></script>
     <script src="{{ URL::asset('libraryJs/turn.js') }}" type="text/javascript"></script>
     <script>
         //semua event listener
-        // var main = document.querySelector('#main');
+        var mainEl = document.querySelector('#main');
         var magazine = document.querySelector('#magazine');
         var magazine_section = document.querySelector('.magazine_section');
         var main_top = document.querySelector('.main_top');
@@ -137,6 +180,9 @@
             var scale = e.target.value;
             // $('#magazine').turn('zoom', scale/100);
             magazine.style.zoom = scale/100;
+            const value = (e.target.value - e.target.min) / (e.target.max - e.target.min);
+            const percent = value * 100;
+            e.target.style.background = `linear-gradient(to right, #ED2736 ${percent}%, white ${percent}%)`;
         });
 
         zoom__control__zoomin.addEventListener('click', () => {
@@ -146,17 +192,21 @@
             if(scale<400 ){
                 magazine.style.zoom = scale/100;
             }
+
         });
-        zoom__control__zoomout.addEventListener('click', () => {
-            var scale = parseInt(zoom__slider.value);
+        zoom__control__zoomout.addEventListener('click', (e) => {
+            var scale = parseInt(e.target.value);
             scale-=1;
-            zoom__slider.value = scale;
+            e.target.value = scale;
             if(scale<400 ){
                 magazine.style.zoom = scale/100;
             }
         });
         page__slider.addEventListener('input', (e)=>{
             var page = e.target.value;
+            const value = (e.target.value - e.target.min) / (e.target.max - e.target.min);
+            const percent = value * 100;
+            e.target.style.background = `linear-gradient(to right, #ED2736 ${percent}%, white ${percent}%)`;
             $('#magazine').turn('page', page);
         });
         next_button.addEventListener('click',()=>{
@@ -178,17 +228,17 @@
 
         fullscreen_control.addEventListener('click', () => {
             if(!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement){
-                if(main.requestFullscreen){
-                    main.requestFullscreen();
+                if(mainEl.requestFullscreen){
+                    mainEl.requestFullscreen();
                     document.querySelector('.main_top').style.height = "90vh";
-                }else if(main.mozRequestFullScreen){
-                    main.mozRequestFullScreen();
+                }else if(mainEl.mozRequestFullScreen){
+                    mainEl.mozRequestFullScreen();
                     document.querySelector('.main_top').style.height = "90vh";
                 }else if(main.webkitRequestFullscreen){
-                    main.webkitRequestFullscreen();
+                    mainEl.webkitRequestFullscreen();
                     document.querySelector('.main_top').style.height = "90vh";
-                }else if(main.msRequestFullscreen){
-                    main.msRequestFullscreen();
+                }else if(mainEl.msRequestFullscreen){
+                    mainEl.msRequestFullscreen();
                     document.querySelector('.main_top').style.height = "90vh";
                 }
             }else {
@@ -209,6 +259,9 @@
         $("#magazine").bind("turned", function(event, page, view) {
             currentPage = page;
             page__slider.value = currentPage;
+            const value = (page__slider.value - page__slider.min) / (page__slider.max - page__slider.min);
+            const percent = value * 100;
+            page__slider.style.background = `linear-gradient(to right, #ED2736 ${percent}%, white ${percent}%)`;
             current__page.innerHTML = $("#magazine").turn("view").join(" - ");
             if($(document).width()<=800){
                 setStyleMobile(page);

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\List_magazineController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +16,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+// Route::resource('/', HomeController::class);
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/pdf/{id}', 'show')->name('pages.test');
+    Route::get('/deskripsi','deskripsi')->name('pages.deskripsi');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('PDFadmin',function (){
-    return view('/admin/index');
+// Route::get('PDFadmin',function (){
+//     return view('/admins/index');
+// });
+Route::get('PDFadmin/create',function (){
+    return view('/admins/create');
 });
+Route::resource('PDFadmin',List_magazineController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

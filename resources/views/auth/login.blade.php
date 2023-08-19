@@ -1,4 +1,19 @@
-<x-guest-layout>
+<div>
+    <div>
+        <h1>ADMIN PDF</h1>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <label for="email">Email</label>
+            <input type="text" type="email" name="email">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="submit"/>
+        </form>
+    </div>
+
+</div>
+
+{{-- <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -44,6 +59,7 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
 
-<div></div>
+
+
