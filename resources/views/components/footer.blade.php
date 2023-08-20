@@ -9,16 +9,10 @@
     <div class="parent-contact">
     <div class="contact">
         <h3>Contact Us</h3>
-        <img src="fb.svg">
-        <img src="twit.svg">
-        <img src="instagram.svg">
-        <img src="youtube.svg">
-    </div>
-    <div class="produk">
-        <h3>Product</h3>
-        <p>Fokus</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
+        <img src="fb.svg" width="50px" height="40px">
+        <img src="twit.svg" width="50px" height="35px">
+        <img src="instagram.svg" width="50px" height="40px">
+        <img src="youtube.svg" width="50px" height="40px">
     </div>
 </div>
 </div>

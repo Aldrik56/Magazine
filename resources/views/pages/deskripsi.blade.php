@@ -11,6 +11,7 @@
         </div>
     </div>
     <img class="pdf" src="test 5.svg">
+    
     @include('components.footer')
 </body>
 </html>

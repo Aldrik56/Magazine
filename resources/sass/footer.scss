@@ -1,27 +1,26 @@
 .footer {
     background-color: #2C2C2C;
     color: white;
+    position: absolute;
     bottom: 0;
-    display:flex;
-    width: 100vw;
 }
 
 .parent{
-    display:grid;
     grid-template-columns: 50% 50%;
     padding-right: 200px;
     padding-left: 200px;
     padding-top:40px;
-    gap: 50px;
+    gap: 100px;
 }
 
 .produk{
     display:inline;
 }
+
 .desc-judul{
 
 }
 
 .contact{
-  
+  margin-top: 10px;
 }
