@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\List_magazineController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,17 +27,22 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/deskripsi','deskripsi')->name('pages.deskripsi');
 });
 
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'index');
+    Route::get('/admin/create', 'create');
+    Route::post('/admin', 'store');
+    Route::get('/admin/{id}/edit', 'edit');
+    Route::put('/admin/{id}', 'update');
+    Route::delete('/admin/{id}', 'destroy');
+});
+// Route::get('PDFadmin/create',function (){
+//     return view('/admins/create');
+// });
+// Route::resource('PDFadmin',AdminController::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::get('PDFadmin',function (){
-//     return view('/admins/index');
-// });
-Route::get('PDFadmin/create',function (){
-    return view('/admins/create');
-});
-Route::resource('PDFadmin',List_magazineController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

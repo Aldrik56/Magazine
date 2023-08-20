@@ -1,24 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\models\Admin;
-use App\models\Posts;
+use App\models\List_magazines;
 use Storage;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth'); // Apply auth middleware to all methods
+    }
+
     public function index()
     {
-        $admins=Posts::all();
-        return view('admins.index',['admins'=>$admins]);
-
+        $list_magazine=List_magazines::all();
+        if (Auth::check()) {
+            $user = Auth::user();
+            $name = $user->name;
+            $email = $user->email;
+            return view('admins.index', compact('name', 'email','list_magazine'));
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     /**
@@ -44,21 +55,25 @@ class adminController extends Controller
         //     'nim'=>'required|max:10|unique:admins',
         //     'nama'=>'required|max:50'
         // ]);
+        $this->validate($request, [
+            'file' => 'required|file|max:' . (200 * 1024), // Max size in kilobytes
+            // Other validation rules...
+        ]);
         $ext=$request->file('file')->extension();
 
         $originalFilename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = $originalFilename . '_' . time() . '.' . $ext;
         $path = $request->file('file')->storePubliclyAs('files', $newFilename, 'public');
 
-        $admin=new Posts();
-        $admin->judul=$request->judul;
-        $admin->deskripsi=$request->deskripsi;
-        $admin->edisi=$request->edisi;
-        $admin->tanggal_terbit=$request->tanggal_terbit;
-        $admin->tebal=$request->tebal;
-        $admin->bahasa=$request->bahasa;
-        $admin->file = $path;
-        $admin->save();
+        $magazine=new List_magazines();
+        $magazine->judul=$request->judul;
+        $magazine->deskripsi=$request->deskripsi;
+        $magazine->edisi=$request->edisi;
+        $magazine->tanggal_terbit=$request->tanggal_terbit;
+        $magazine->tebal=$request->tebal;
+        $magazine->bahasa=$request->bahasa;
+        $magazine->file = $path;
+        $magazine->save();
         return redirect('/PDFadmin/create');
         // return "Berhasil menyimpan data admin dengan id=".$admin->id;
     }
@@ -71,9 +86,9 @@ class adminController extends Controller
      */
     public function show($id)
     {
-        $admin=Posts::findOrFail($id);
-        $file =Storage::url($admin->file);
-        return view('admins.show',['admin'=>$admin,'file'=>$file]);
+        $magazine=List_magazines::findOrFail($id);
+        $file =Storage::url($magazine->file);
+        return view('admins.show',['list_magazine'=>$magazine,'file'=>$file]);
     }
 
     /**
@@ -82,10 +97,11 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        $admin=Posts::findOrFail($id);
-        return view('admins.edit',['admin'=>$admin]);
+
+        $magazine=List_magazines::findOrFail($id);
+        return view('admins.edit',['admin'=>$magazine]);
     }
 
     /**
@@ -97,11 +113,11 @@ class adminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin=Posts::findOrFail($id);
-        $admin->nim=$request->nim;
-        $admin->nama=$request->nama;
-        $admin->prodi=$request->prodi;
-        $admin->save();
+        $magazine=List_magazines::findOrFail($id);
+        $magazine->nim=$request->nim;
+        $magazine->nama=$request->nama;
+        $magazine->prodi=$request->prodi;
+        $magazine->save();
         return redirect('/PDFadmin/create');
     }
 
@@ -113,10 +129,10 @@ class adminController extends Controller
      */
     public function destroy($id)
     {
-        $admin=Posts::find($id);
-        if ($admin) {
+        $magazine=List_magazines::find($id);
+        if ($magazine) {
             // Get the file path from the database
-            $filePath = $admin->file;
+            $filePath = $magazine->file;
     
             // Delete the file from storage if it exists
             if (Storage::disk('public')->exists($filePath)) {
@@ -124,9 +140,22 @@ class adminController extends Controller
             }
     
             // Delete the record from the database
-            $admin->delete();
+            $magazine->delete();
         }
         return redirect('/PDFadmin');
+    }
+
+
+    public function profile()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $name = $user->name;
+            $email = $user->email;
+            return view('admins', compact('name', 'email'));
+        } else {
+            return redirect()->route('login');
+        }
     }
     
 }
