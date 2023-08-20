@@ -3,7 +3,7 @@
 }
 
 .badan{
-    height: 1500px;
+
 }
 
 .container{
@@ -15,9 +15,26 @@
     z-index: -1;
 }
 
-.pdf{
+.parent{
+    grid-template-columns: 50% 50%;
+    display: grid;
+    color: white;
     padding-left: 228px;
     padding-top: 75px;
+    padding-right:200px;
+    gap: 50px;
+}
+
+.parent-title{
+    line-height: 50px;
+}
+
+.parent-deskripsi{
+    margin-left:199px;
+    margin-top:175px;
+}
+
+.pdf{
     width: 449px;
     height: 629px;
 }
