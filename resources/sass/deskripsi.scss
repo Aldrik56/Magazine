@@ -9,7 +9,7 @@
 .container{
     position: absolute;
     top: 0px;
-    height: 585px;
+    height: 370px;
     width: 100%;
     background-color: #2C2C2C;
     z-index: -1;
@@ -19,24 +19,23 @@
     grid-template-columns: 50% 50%;
     display: grid;
     color: white;
-    padding-left: 228px;
+    padding-left: 100px;
     padding-top: 75px;
     padding-right:200px;
     gap: 50px;
 }
 
 .parent-title{
-    line-height: 50px;
 }
 
 .parent-deskripsi{
     margin-left:199px;
-    margin-top:175px;
+    margin-top:75px;
 }
 
 .pdf{
     width: 449px;
-    height: 629px;
+    height: 500px;
 }
 
 .hero__buttons {
