@@ -24,6 +24,14 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing</p>
     <h4>Bahasa :</h4>
     <p>Bahasa Indonesia</p>
+    <form action="deskripsi" method="post" class='hero__buttons'>
+                <button type="submit" class='read'>
+                    <strong> <a href='/pdf/{{$magazines[count($magazines)-1]->id}}'>Read Now</a></strong>
+                </button>
+                <button type="submit" class="desc">
+                    <strong><a href='#'>Description</a></strong>
+                </button>
+            </form>
 </div>
     
     @include('components.footer')

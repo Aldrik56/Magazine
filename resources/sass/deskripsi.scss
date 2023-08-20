@@ -38,3 +38,116 @@
     width: 449px;
     height: 629px;
 }
+
+.hero__buttons {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero__buttons * {
+    height: 40px;
+    width: 160px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero__buttons a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .hero__buttons *:hover {
+    cursor: pointer;
+  }
+  .hero__buttons .read {
+    background-color: #E92233;
+    color: white;
+  }
+  .hero__buttons .desc {
+    color: #ED2736;
+    border-style: solid;
+    border-color: #E92233;
+  }
+  
+  .swiper > div {
+    flex: 1;
+  }
+  
+  .swiper {
+    --items-in-view:5;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    position: relative;
+    width: 90vw;
+  }
+  .swiper h3 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .swiper .magazines {
+    --swiperIndex:0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    max-width: 1250px;
+    width: 100%;
+    position: relative;
+  }
+  .swiper .magazines .magazine {
+    position: relative;
+    flex: 0 0 calc(100% / var(--items-in-view));
+    max-width: calc(100% / var(--items-in-view));
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .swiper .magazines .magazine .img__container {
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    position: relative;
+  }
+  .swiper .magazines .magazine img {
+    height: 284px;
+  }
+  .swiper .magazines .magazine .magazine__lightbox {
+    width: 90%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 5px;
+    z-index: 1;
+    transition: 0.5s;
+  }
+  .swiper .magazines .magazine:hover .magazine__lightbox {
+    display: flex;
+  }
+  .swiper .toggle {
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 150px;
+    z-index: 2;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .swiper .right {
+    right: 20px;
+  }
+  .swiper .left {
+    left: 0px;
+  }
