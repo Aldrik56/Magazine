@@ -8,7 +8,7 @@
         <div class="main_top">
             <div class="magazine_section">
                 <div id="magazine"class="animated">
-                    <canvas id="the-canvas1"></canvas>
+                    <canvas id="main-canvas1"></canvas>
                 </div>
             </div>
         </div>
@@ -31,14 +31,16 @@
             <div class="fullscreen_control">
                 <svg viewBox="0 0 36 36"><path d="M27.7 10.29A.98.98 0 0 0 27 10h-4a1 1 0 0 0 0 2h3v3a1 1 0 0 0 2 0v-4a.98.98 0 0 0-.29-.7Zm-19.4 0A.98.98 0 0 1 9 10h4a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-4c0-.28.11-.52.29-.7ZM27.71 25.7A.98.98 0 0 0 28 25v-4a1 1 0 0 0-2 0v3h-3a1 1 0 0 0 0 2h4c.28 0 .52-.11.7-.29Zm-19.42 0A.98.98 0 0 1 8 25v-4a1 1 0 0 1 2 0v3h3a1 1 0 0 1 0 2H9a.98.98 0 0 1-.7-.29Z" fill="currentColor"></path></svg> 
             </div>
-            <div class="next_button">
+            <div class="main_next_button">
                 {{-- <div class="hidden__description"><p>Next</p></div> --}}
                 <img src="{{URL::asset('assets/arrow_right.svg')}}" alt="">
             </div>
         </div>
     </main>
+    @include('components.swiper')
     <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('libraryJs/pdf.worker.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script id="script">
         // const url = '{{ URL::asset('magazine/test.pdf') }}';
@@ -47,14 +49,14 @@
 
         const pdfurl = '{{ asset('storage/') }}/' + url.file;
         var loadingTask = pdfjsLib.getDocument(pdfurl);
-        var canvas = document.getElementById('the-canvas1');
+        var canvas = document.getElementById('main-canvas1');
         var context = canvas.getContext('2d');
         var currentPage=1;
         var totalPage = 0;
         var scale = 1;
 
         async function renderPage(pageNumber) {
-            const canvas = document.querySelector('#the-canvas' + pageNumber);
+            const canvas = document.querySelector('#main-canvas' + pageNumber);
             const context = canvas.getContext('2d');
             
             const pdf = await loadingTask.promise;
@@ -84,10 +86,10 @@
                 $(".page__slider").attr("max",pdf.numPages);
                 for(var i=2;i<=pdf.numPages;i++){
                     if(i%2==0){
-                        element = $("<canvas />", {"id": "the-canvas"+i,"class":"even"}).html("Loading...");
+                        element = $("<canvas />", {"id": "main-canvas"+i,"class":"even"}).html("Loading...");
                         $("#magazine").turn("addPage", element);  
                     }else {
-                        element = $("<canvas />", {"id": "the-canvas"+i,"class":"odd"}).html("Loading...");
+                        element = $("<canvas />", {"id": "main-canvas"+i,"class":"odd"}).html("Loading...");
                         $("#magazine").turn("addPage", element);
                     }
                     // element = $("<canvas />", {"id": "the-canvas"+i}).html("Loading...");
@@ -113,7 +115,10 @@
                 setStyleLaptop(currentPage);
             }
         });
+
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src='./js/navbar.js'></script>
     <script src="{{URL::asset('js/loading.js')}}"></script>
     <script src="{{ URL::asset('libraryJs/turn.js') }}" type="text/javascript"></script>
     <script>
@@ -130,7 +135,7 @@
         var fullscreen_control = document.querySelector('.fullscreen_control');
         var current__page = document.querySelector('.current__page');
         var prev_button = document.querySelector('.prev_button');
-        var next_button = document.querySelector('.next_button');
+        var next_button = document.querySelector('.main_next_button');
         var page__slider = document.querySelector('.page__slider');
 
 

@@ -13,7 +13,8 @@
     }
     .magazine_box {
         position:relative;
-        top:0px;
+        top:100px;
+
         width:fit-content;
     }
     .navbar__admin {
@@ -21,8 +22,9 @@
         color:#FFFFFF;
     }
     canvas {
-        max-width: 250px;
-        max-height: 362px;
+        width: 250px;
+        height: 362px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
     }
     .swiperSlide__buttons {
         display: none;
@@ -52,7 +54,7 @@
     .swiperSlide__buttons button {
         border: none;
         width:214px;
-        height:35px;
+        height:45px;
         border-radius: 40px;
         display: flex;
         justify-content: center;
@@ -93,25 +95,40 @@
         text-align: center;
         box-sizing: border-box; 
     }
+    .upload_button {
+        background-color: #FFFFFF;
+        padding:5px 15px;
+        border-radius:20px;
+    }
+    .upload_button a {
+        text-decoration: none;
+        color: #ED2736;
+        font-size:28px;
+    }
 </style>
 <body>
-    <nav class="navbar__admin">
-        <h1>Admin Page</h1>
+    @php 
+        $detailBuku=null;
+        function bukaDetail($magazine){
+            // $detailBuku = $list_magazine;
+            session(['detailBuku' => $magazine]);
+        }
+    @endphp
+    <nav class="navbar__admin" id="nav">
         @auth
             <div>
                 <h1>Welcome, {{ $name }}!</h1>
             </div>
+
+            <button class="upload_button">
+                <a href="/admin/create">Upload</a>
+            </button>
         @else
             <p>Please log in to see your profile.</p>
         @endauth
+
+
     </nav>
-    
-    <div>
-
-    </div>
-
-
-    <h1>Daftar Mahasiswa</h1>
     <div class="listmagazine__section">
         @php
             $count = count($list_magazine);
@@ -124,7 +141,7 @@
                         <strong><a class="admin_a" href='/pdf/{{$list_magazine[$i]->id}}'>Read</a></strong>
                     </button>
                     <button class='desc'>
-                        <strong><a class="admin_a" href='#'>Detail</a></strong>
+                        <strong><a class="admin_a" href='#' onclick="bukaDetail($list_magazine[$i])" data-bs-toggle="modal" data-bs-target="#exampleModal">Detail</a></strong>
                     </button>
                     <button>
                         <strong><a class="admin_a" href='/admin/{{$list_magazine[$i]->id}}/edit'>Edit</a></strong>
@@ -132,45 +149,13 @@
                 </div>
             </div>
         @endfor
-
-        <div id="modalEdit" class="modal">
-            <div class="w3-modal-content">
-              <div class="w3-container">
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                <p>Some text. Some text. Some text.</p>
-                <p>Some text. Some text. Some text.</p>
-              </div>
-            </div>
-          </div>
-
-
     </div>
-    
-    <a href="/PDFadmin/create">Create new admin</a>
-    <table border="1">
-        <tr>
-            <th>NIM</th>
-            <th>Nama</th>
-            <th>Prodi</th>
-            <th>Tindakan</th>
-        </tr>
-        @foreach($list_magazine as $magazine)
-        <tr>
-            <td>{{$magazine->judul}}</td>
-            <td>{{$magazine->deskripsi}}</td>
-            <td>{{$magazine->file}}</td>
-            <td>
-                <a href="/PDFadmin/{{$magazine->id}}">SHOW</a>
-                <a href="/PDFadmin/{{$magazine->id}}/edit">EDIT</a>
-                <form action="/PDFadmin/{{$magazine->id}}" method="post">
-                    @method('DELETE')
-                    @csrf 
-                    <button type="submit">DELETE</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+    <footer style="background-color: #2C2C2C;height:fit-content;margin-top:200px;width:100%;color:white;display:flex;flex-direction:column;justify-content:center;">
+        <a href="#nav" style="text-decoration: none;color:white;">
+            <p style="font-size: 50px;margin:0px;text-align:center">⏏</p>
+            <p style="font-size: 30px;margin:0px;text-align:center">Back to top</p>
+        </a>
+    </footer>
     <script>
         async function renderPage(url, index) {
         const canvas = document.querySelector('#the-canvas'+index);
@@ -205,6 +190,8 @@
     </script>
     <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('libraryJs/pdf.worker.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 </body>
 </html>

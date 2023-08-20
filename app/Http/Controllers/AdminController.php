@@ -74,7 +74,7 @@ class AdminController extends Controller
         $magazine->bahasa=$request->bahasa;
         $magazine->file = $path;
         $magazine->save();
-        return redirect('/PDFadmin/create');
+        return redirect('/admin');
         // return "Berhasil menyimpan data admin dengan id=".$admin->id;
     }
 
@@ -97,7 +97,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,Request $request)
+    public function edit($id)
     {
 
         $magazine=List_magazines::findOrFail($id);
@@ -113,12 +113,28 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $magazine=List_magazines::findOrFail($id);
-        $magazine->nim=$request->nim;
-        $magazine->nama=$request->nama;
-        $magazine->prodi=$request->prodi;
+        $magazine->judul=$request->judul;
+        $magazine->deskripsi=$request->deskripsi;
+        $magazine->edisi=$request->edisi;
+        $magazine->tanggal_terbit=$request->tanggal_terbit;
+        $magazine->tebal=$request->tebal;
+        $magazine->bahasa=$request->bahasa;
+        
+        if ($request->file('file')) {
+            // Delete the old file if it exists
+            if (Storage::disk('public')->exists($magazine->file)) {
+                Storage::disk('public')->delete($magazine->file);
+            }
+            $ext = $request->file('file')->extension();
+            $originalFilename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $originalFilename . '_' . time() . '.' . $ext;
+            $path = $request->file('file')->storePubliclyAs('files', $newFilename, 'public');
+            $magazine->file = $path;
+        }
         $magazine->save();
-        return redirect('/PDFadmin/create');
+        return redirect('/admin');
     }
 
     /**

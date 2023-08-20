@@ -64,8 +64,6 @@ $pdfTerbaru = count($magazines)-1;
         }
         
         renderIllustration( listMagazine[listMagazine.length -1].file,  1);
-    
-        
     </script>
     <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('libraryJs/pdf.worker.js') }}"></script>

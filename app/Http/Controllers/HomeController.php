@@ -17,8 +17,9 @@ class HomeController extends Controller
     public function show($id)
     {
         $magazine=List_magazines::findOrFail($id);
+        $list_magazine=List_magazines::all();
         $file =Storage::url($magazine->file);
-        return view('pages.test',['magazine'=>$magazine,'file'=>$file]);
+        return view('pages.test',['magazines'=>$list_magazine,'magazine'=>$magazine,'file'=>$file]);
     }
 
     public function deskripsi()

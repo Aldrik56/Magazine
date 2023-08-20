@@ -6,6 +6,9 @@ $heightLoadingScreen: 100vh;
 
 
 .main__page {
+    width: 100vw;
+    height: fit-content !important;
+    width: 100vw;
     // .even {
     //     background-image:url(./gradient-page-left.jpg);
     //     background-size: 1000px 2000px;
@@ -60,7 +63,7 @@ $heightLoadingScreen: 100vh;
         height: 15vh;
     }
     main {
-        width: 95vw;
+        width: 100vw;
         height:90vh;
         background-color: #303030;
         display: none;
@@ -107,7 +110,7 @@ $heightLoadingScreen: 100vh;
         justify-content: center;
         align-items: center;
     }
-    .prev_button , .next_button {
+    .prev_button , .main_next_button {
         padding:0px 20px;
     }
     .main_top svg {
@@ -206,22 +209,6 @@ $heightLoadingScreen: 100vh;
         body {
             margin :0px !important;
         }
-        main {
-            width:100vw !important;
-            height:100vh !important;
-        }
-        .main_top {
-            height:100vh !important;
-        }
-        .magazine_section {
-            height:100vh !important;
-            width: 100vw !important;
-            overflow: scroll;
-        }
-        #magazine {
-            width: 100vw !important;
-            height: 100vh !important;
-        }
         .group_button {
             position:absolute;
             display:flex;
@@ -233,6 +220,22 @@ $heightLoadingScreen: 100vh;
         }
     }
     @media only screen and (max-width:768px){
+        main {
+            width:100vw !important;
+            height:70vh !important;
+        }
+        .main_top {
+            height:70vh !important;
+        }
+        .magazine_section {
+            height:70vh !important;
+            width: 100vw !important;
+            overflow: scroll;
+        }
+        #magazine {
+            width: 100vw !important;
+            height: 70vh !important;
+        }
         .group_button {
             position:absolute;
             display:flex;
@@ -244,7 +247,7 @@ $heightLoadingScreen: 100vh;
         }
     }
     @media only screen and (max-width:480px){
-        .prev_button , .next_button {
+        .prev_button , .main_next_button {
             padding:0px 5px;
 
             img {
@@ -255,3 +258,29 @@ $heightLoadingScreen: 100vh;
     }
     
 }
+
+// .swiper__section{
+//     position:relative;
+//     .swiperControl {
+//       position: absolute;
+//       width:fit-content;
+//       right:200px;
+//       z-index: 9;
+//       top: 111px;
+//       padding:0px;
+//       margin:0px;
+  
+//       .next_button {
+//         border:none;
+//         padding:0px;
+
+//         background-color: transparent;
+//       }
+//     }
+//   }
+  
+//   swiper-slide {
+//     position:relative;
+//     padding-bottom: 10px;
+//   }
+  
