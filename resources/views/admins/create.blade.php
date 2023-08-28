@@ -35,7 +35,7 @@
         align-items: center;
         flex-direction: column;
     }
-    .login__form {
+    .upload__form {
         width:50vw;
         margin-top: 20px;
         margin-left: 0;
@@ -52,12 +52,12 @@
         -webkit-box-shadow: 0 4px 10px -1px #555555 !important;
         box-shadow: 0 4px 10px -1px #555555 !important;
     }
-    .login__form label {
+    .upload__form label {
         color: #ffffff;
         font-size: 14px;
         font-weight: 400;
     }
-    .login__form input {
+    .upload__form input {
         /* padding:0px 20px; */
         display:flex;
         justify-content: center;
@@ -79,7 +79,7 @@
         -o-transition: border .15s linear,box-shadow .15s linear;
         transition: border .15s linear,box-shadow .15s linear; */
     }
-    .login__form textarea {
+    .upload__form textarea {
         /* padding:0px 20px; */
         display:flex;
         justify-content: center;
@@ -111,7 +111,7 @@
     .password {
         margin-top: 20px;
     }
-    .login__button {
+    .upload__button {
         margin-top: 20px;
         background: rgba(85,85,85, 0.9);
         border:none;
@@ -130,70 +130,75 @@
 <body>
     <div class="login__section">
         <h1 class="title">Upload PDF</h1>
-        <form action="/admin" method="POST" class="login__form" enctype="multipart/form-data">
-            @method('PUT')
+        @error('file')
+            <script>
+                alert("{{$message}}");
+            </script>
+        @enderror
+        @error('sampul')
+            <script>
+                alert("{{$message}}");
+            </script>
+        @enderror
+        <form action="/admin" method="POST" id="upload__form" class="upload__form" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="email">Judul</label>
-                <input type="text" name="judul" id="judul" >
+                <input type="text" name="judul" id="judul" required>
             </div>
             <div>
-                <label  >Deskripsi / Sinopsis PDF</label><br>
-                <textarea type="text" rows="5"name="deskripsi" id="deskripsi" ></textarea>
+                <label>Deskripsi / Sinopsis PDF</label><br>
+                <textarea type="text" rows="5"name="deskripsi" id="deskripsi" required></textarea>
             </div> 
             <div>
-                <label >Edisi</label>
+                <label>Edisi</label>
                 <input type="text" name="edisi" id="edisi">
             </div>
             <div >
                 <label  >Tanggal Terbit</label>
-                <input type="text" name="tanggal_terbit" id="tanggal_terbit">
+                <input type="date" name="tanggal_terbit" id="tanggal_terbit" required>
             </div>
             <div >
                 <label for="password" >Tebal</label>
-                <input type="text" name="tebal" id="tebal">
+                <input type="text" name="tebal" id="tebal" required>
             </div>
             <div >
                 <label for="password" >Bahasa</label>
-                <input type="text" name="bahasa" id="bahasa">
+                <input type="text" name="bahasa" id="bahasa" required>
             </div>
             <div>
-                <label >File</label>
+                <label >Sampul buku (png,jpg,jpeg, dsb.)</label>
+                <input type="file" class="input_file" name="sampul" id="sampul">
+            </div>
+            <div>
+                <label >File (pdf)</label>
                 <input type="file" class="input_file" name="file" id="file">
             </div>
-            <button type="submit" class="login__button">Upload</button>
-        </div>
-            
+            <button type="button" class="upload__button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload</button>
+        </div>       
         </form>
+        <div class="modal" id="uploadModal" aria-labelledby="uploadModalLabel" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Warning</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p style="font-size:16px">Apakah kamu yakin untuk mengupload PDF ini?</p>  
+                  <p style="font-size:16px">Note : Periksa kembali kelengkapan dan keakuratan data sebelum mengupload.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" form="upload__form">UPLOAD</button>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
-<div class="admin_pdf"><h1>Upload PDF</h1></div>
-<div class="tambahPDF__section">
-    <div class="form_box">
-        <form action="/PDFadmin" method="post" enctype="multipart/form-data">
-            @csrf
-            judul : <input type="text" name="judul" id="judul"><br>
-            deskripsi : <input type="text" name="deskripsi" id="deskripsi"><br>
-            edisi : <input type="text" name="edisi" id="edisi"><br>
-            tanggal_terbit : <input type="date" name="tanggal_terbit" id="tanggal_terbit"><br>
-            tebal : <input type="text" name="tebal" id="tebal"><br>
-            bahasa : <input type="text" name="bahasa" id="bahasa"><br>
-            upload majalah pdf : <input type="file" name="file" id="file"><br>
-        
-            <button type="submit">submit</button>
-            {{-- $table->string('judul');
-                    $table->string('deskripsi');
-                    $table->string('edisi');
-                    $table->string('tanggal_terbit');
-                    $table->string('tebal');
-                    $table->string('bahasa');
-                    $table->string('link')->nullable(); --}}
-        
-        </form>
-    </div>
-</div>
-
 <style>
     .tambahPDF__section{
         display: flex;

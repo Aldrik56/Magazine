@@ -1,16 +1,25 @@
-<nav class='flex'>
-  <img class='logo' src='{{URL::asset('assets/navbar/Ultimagz-logo.svg')}}'/>
-
-  <div class='nav__menu'>
-    <p class='text-stone-200'>Home</p>
-    <p>Lorem</p>
-    <p>Other Product</p>
+<nav class='flex nav__user' >
+  <div class="nav__content">
+    <img class='logo' src='{{URL::asset('assets/navbar/Ultimagz-logo.svg')}}'/>
+    <div class="nav__menu__desktop navMenu">
+      <a class='text-stone-200'>Home</a>
+      <a>Lorem</a>
+      <a>Other Product</a>
+    </div>
+    <svg id='hamburger-menu' xmlns="http://www.w3.org/2000/svg" width="37" height="25" viewBox="0 0 37 25" fill="none">
+      <path d="M4.625 12.5H32.375" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4.625 6.25H32.375" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4.625 18.75H32.375" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 
-  <svg id='hamburger-menu' xmlns="http://www.w3.org/2000/svg" width="37" height="25" viewBox="0 0 37 25" fill="none">
-    <path d="M4.625 12.5H32.375" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4.625 6.25H32.375" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4.625 18.75H32.375" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+  <div class='nav__menu navMenu'>
+    <a class='text-stone-200'>Home</a>
+      <a>Lorem</a>
+      <a>Other Product</a>
+  </div>
+
 </nav>
+
+
 

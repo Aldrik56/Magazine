@@ -2,8 +2,9 @@
 <html lang="en">
 @include('components.header')
 <body class="main__page">
-    @include('loading')
+    @include('components.loading')
     @include('components.navbar')
+
     <main controls id="main"> 
         <div class="main_top">
             <div class="magazine_section">
@@ -29,40 +30,40 @@
                 <input type="image" src="{{URL::asset('assets/plus.svg')}}" class="zoom__control__zoomin" style="padding:0px 5px" value="+">
             </div>
             <div class="fullscreen_control">
-                <svg viewBox="0 0 36 36"><path d="M27.7 10.29A.98.98 0 0 0 27 10h-4a1 1 0 0 0 0 2h3v3a1 1 0 0 0 2 0v-4a.98.98 0 0 0-.29-.7Zm-19.4 0A.98.98 0 0 1 9 10h4a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-4c0-.28.11-.52.29-.7ZM27.71 25.7A.98.98 0 0 0 28 25v-4a1 1 0 0 0-2 0v3h-3a1 1 0 0 0 0 2h4c.28 0 .52-.11.7-.29Zm-19.42 0A.98.98 0 0 1 8 25v-4a1 1 0 0 1 2 0v3h3a1 1 0 0 1 0 2H9a.98.98 0 0 1-.7-.29Z" fill="currentColor"></path></svg> 
+                <svg viewBox="0 0 36 36"><path d="M27.7 10.29A.98.98 0 0 0 27 10h-4a1 1 0 0 0 0 2h3v3a1 1 0 0 0 2 0v-4a.98.98 0 0 0-.29-.7Zm-19.4 0A.98.98 0 0 1 9 10h4a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-4c0-.28.11-.52.29-.7ZM27.71 25.7A.98.98 0 0 0 28 25v-4a1 1 0 0 0-2 0v3h-3a1 1 0 0 0 0 2h4c.28 0 .52-.11.7-.29Zm-19.42 0A.98.98 0 0 1 8 25v-4a1 1 0 0 1 2 0v3h3a1 1 0 0 1 0 2H9a.98.98 0 0 1-.7-.29Z" fill="currentColor"></path></svg>
+                <img src="{{URL::asset('assets/fullscreen.svg')}}" alt="">
             </div>
             <div class="main_next_button">
-                {{-- <div class="hidden__description"><p>Next</p></div> --}}
                 <img src="{{URL::asset('assets/arrow_right.svg')}}" alt="">
             </div>
         </div>
     </main>
     @include('components.swiper')
-    <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('libraryJs/pdf.worker.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script id="script">
-        // const url = '{{ URL::asset('magazine/test.pdf') }}';
-        const url = @json($magazine);
-        console.log('{{ asset('storage/') }}/' + url.file);
+    @include('components.globalScript')
 
+    <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
+    <script src="{{URL::asset('js/loading.js')}}" type="text/javascript"></script>
+    <script src="{{ URL::asset('libraryJs/turn.js') }}" type="text/javascript"></script>
+    <script id="script">
+        // import pdfjsLib from 'pdfjs-dist';
+        $(function() {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.js';    
+        });
+        const url = @json($magazine);
         const pdfurl = '{{ asset('storage/') }}/' + url.file;
         var loadingTask = pdfjsLib.getDocument(pdfurl);
-        var canvas = document.getElementById('main-canvas1');
-        var context = canvas.getContext('2d');
         var currentPage=1;
         var totalPage = 0;
         var scale = 1;
 
         async function renderPage(pageNumber) {
             const canvas = document.querySelector('#main-canvas' + pageNumber);
-            const context = canvas.getContext('2d');
+            const context = canvas.getContext("2d", { colorSpace: 'srgb',alpha:true, willReadFrequently: true });
             
             const pdf = await loadingTask.promise;
             const page = await pdf.getPage(pageNumber);
-            
-            const viewport = page.getViewport({ scale: scale });
+            const scale = 2.5;
+            const viewport = page.getViewport({ scale });
             canvas.width = viewport.width;
             canvas.height = viewport.height;
             
@@ -92,8 +93,6 @@
                         element = $("<canvas />", {"id": "main-canvas"+i,"class":"odd"}).html("Loading...");
                         $("#magazine").turn("addPage", element);
                     }
-                    // element = $("<canvas />", {"id": "the-canvas"+i}).html("Loading...");
-                    // $("#magazine").turn("addPage", element);  
                 }
                 totalPage=parseInt(pdf.numPages);
                 console.log(totalPage);
@@ -117,10 +116,6 @@
         });
 
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src='./js/navbar.js'></script>
-    <script src="{{URL::asset('js/loading.js')}}"></script>
-    <script src="{{ URL::asset('libraryJs/turn.js') }}" type="text/javascript"></script>
     <script>
         //semua event listener
         var mainEl = document.querySelector('#main');

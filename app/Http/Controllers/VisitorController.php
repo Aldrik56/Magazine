@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\List_magazines;
+use App\Models\List_magazines;
 use Storage;
 
-class HomeController extends Controller
+class VisitorController extends Controller
 {
     public function index()
     {
@@ -19,11 +19,13 @@ class HomeController extends Controller
         $magazine=List_magazines::findOrFail($id);
         $list_magazine=List_magazines::all();
         $file =Storage::url($magazine->file);
-        return view('pages.test',['magazines'=>$list_magazine,'magazine'=>$magazine,'file'=>$file]);
+        return view('pages.baca',['magazines'=>$list_magazine,'magazine'=>$magazine,'file'=>$file]);
     }
 
-    public function deskripsi()
+    public function deskripsi($id)
     {
-        return view('pages.deskripsi');
+        $list_magazine=List_magazines::all();
+        $magazine=List_magazines::findOrFail($id);
+        return view('pages.deskripsi',['magazines'=>$list_magazine,'magazine'=>$magazine]);
     }
 }

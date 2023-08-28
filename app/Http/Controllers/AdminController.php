@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\models\List_magazines;
+use App\Models\List_magazines;
 use Storage;
 
 class AdminController extends Controller
@@ -56,14 +56,27 @@ class AdminController extends Controller
         //     'nama'=>'required|max:50'
         // ]);
         $this->validate($request, [
-            'file' => 'required|file|max:' . (200 * 1024), // Max size in kilobytes
+            'file' => 'required|mimes:pdf', // Max size in kilobytes
+            'sampul' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg',
             // Other validation rules...
+        ],[
+            'file.required'=>'File tidak boleh kosong',
+            'file.mimes'=>'File harus berupa pdf',
+            'sampul.required'=>'Sampul tidak boleh kosong',
+            'sampul.mimes'=>'Sampul harus berupa image',
+
         ]);
         $ext=$request->file('file')->extension();
 
         $originalFilename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = $originalFilename . '_' . time() . '.' . $ext;
         $path = $request->file('file')->storePubliclyAs('files', $newFilename, 'public');
+
+        $ext=$request->file('sampul')->extension();
+
+        $originalFilename = pathinfo($request->file('sampul')->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFilename = $originalFilename . '_' . time() . '.' . $ext;
+        $path2 = $request->file('sampul')->storePubliclyAs('sampuls', $newFilename, 'public');
 
         $magazine=new List_magazines();
         $magazine->judul=$request->judul;
@@ -73,6 +86,7 @@ class AdminController extends Controller
         $magazine->tebal=$request->tebal;
         $magazine->bahasa=$request->bahasa;
         $magazine->file = $path;
+        $magazine->sampul = $path2;
         $magazine->save();
         return redirect('/admin');
         // return "Berhasil menyimpan data admin dengan id=".$admin->id;
@@ -86,9 +100,21 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+        $list_magazine=List_magazines::all();
         $magazine=List_magazines::findOrFail($id);
-        $file =Storage::url($magazine->file);
-        return view('admins.show',['list_magazine'=>$magazine,'file'=>$file]);
+        return view('admins.deskripsi',['admin_magazines'=>$list_magazine,'admin_magazine'=>$magazine]);
+    }
+    public function deskripsi($id)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $name = $user->name;
+            $email = $user->email;
+            $magazine=List_magazines::findOrFail($id);
+            return view('admins.deskripsi', compact('name', 'email','magazine'));
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     /**
@@ -99,9 +125,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-
         $magazine=List_magazines::findOrFail($id);
-        return view('admins.edit',['admin'=>$magazine]);
+        return view('admins.edit',['magazine'=>$magazine]);
     }
 
     /**
@@ -113,7 +138,6 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $magazine=List_magazines::findOrFail($id);
         $magazine->judul=$request->judul;
         $magazine->deskripsi=$request->deskripsi;
@@ -121,17 +145,41 @@ class AdminController extends Controller
         $magazine->tanggal_terbit=$request->tanggal_terbit;
         $magazine->tebal=$request->tebal;
         $magazine->bahasa=$request->bahasa;
+
+        $this->validate($request, [
+            'file' => 'mimes:pdf' . (200 * 1024), // Max size in kilobytes
+            'sampul' => 'image|mimes:jpeg,png,jpg,gif,webp,svg',
+            // Other validation rules...
+        ],[
+            'file.mimes'=>'File harus berupa pdf',
+            'sampul.mimes'=>'Sampul harus berupa image',
+
+        ]);
         
         if ($request->file('file')) {
             // Delete the old file if it exists
             if (Storage::disk('public')->exists($magazine->file)) {
                 Storage::disk('public')->delete($magazine->file);
             }
+
+            
             $ext = $request->file('file')->extension();
             $originalFilename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
             $newFilename = $originalFilename . '_' . time() . '.' . $ext;
             $path = $request->file('file')->storePubliclyAs('files', $newFilename, 'public');
             $magazine->file = $path;
+        }
+
+        if ($request->file('sampul')) {
+            // Delete the old file if it exists
+            if (Storage::disk('public')->exists($magazine->sampul)) {
+                Storage::disk('public')->delete($magazine->sampul);
+            }
+            $ext = $request->file('sampul')->extension();
+            $originalFilename = pathinfo($request->file('sampul')->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $originalFilename . '_' . time() . '.' . $ext;
+            $path2 = $request->file('sampul')->storePubliclyAs('sampuls', $newFilename, 'public');
+            $magazine->sampule = $path2;
         }
         $magazine->save();
         return redirect('/admin');
@@ -149,16 +197,19 @@ class AdminController extends Controller
         if ($magazine) {
             // Get the file path from the database
             $filePath = $magazine->file;
+            $filePath2 = $magazine->sampul;
     
             // Delete the file from storage if it exists
             if (Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);
             }
-    
+            if (Storage::disk('public')->exists($filePath2)) {
+                Storage::disk('public')->delete($filePath2);
+            }
             // Delete the record from the database
             $magazine->delete();
         }
-        return redirect('/PDFadmin');
+        return redirect('/admin');
     }
 
 

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,30 +15,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// Route::resource('/', HomeController::class);
-Route::controller(HomeController::class)->group(function () {
+// define route untuk visitor
+Route::controller(VisitorController::class)->group(function () {
     Route::get('/', 'index');
-    Route::get('/pdf/{id}', 'show')->name('pages.test');
-    Route::get('/deskripsi','deskripsi')->name('pages.deskripsi');
+    Route::get('/pdf/{id}', 'show')->name('pages.baca');
+    Route::get('/deskripsi/{id}','deskripsi')->name('pages.deskripsi');
 });
 
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin', 'index');
-    Route::get('/admin/create', 'create');
-    Route::post('/admin', 'store');
-    Route::get('/admin/{id}/edit', 'edit');
-    Route::put('/admin/{id}', 'update');
-    Route::delete('/admin/{id}', 'destroy');
-});
-// Route::get('PDFadmin/create',function (){
-//     return view('/admins/create');
-// });
-// Route::resource('PDFadmin',AdminController::class);
+// define route untuk admin
+Route::resource('admin', AdminController::class);
+Route::get('admin/deskripsi/{id}', [AdminController::class, 'deskripsi'])->name('admins.deskripsi');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

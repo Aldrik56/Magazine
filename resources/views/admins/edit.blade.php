@@ -37,10 +37,8 @@
             align-items: center;
             flex-direction: column;
         }
-        .login__form {
+        .edit__form {
             width:fit-content;
-            
-            margin-top: 100px;
             margin-left: 0;
             padding:26px 26px;
             font-weight: 400;
@@ -93,7 +91,7 @@
         /* .password {
             margin-top: 20px;
         } */
-        .login__button {
+        .save__button, .delete__button {
             margin-top: 20px;
             background: rgba(85,85,85, 0.9);
             border:none;
@@ -111,62 +109,125 @@
             align-items: center;
             gap:40px;
         }
-        .canvas_edit {
-            width: 320px;
+        .sampul__edit >img {
+            box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+            width: 300px;
             height: 434px;
         }
 
         
     </style>
     <body>
+        @error('file')
+        <script>
+            alert("{{$message}}");
+        </script>
+        @enderror
+        @error('sampul')
+            <script>
+                alert("{{$message}}");
+            </script>
+        @enderror
         <div class="login__section">
             <h1>Edit PDF</h1>
-            <form action="/admin/{{$admin->id}}" method="POST" class="login__form" enctype="multipart/form-data">
-                @method('PUT')
-                @csrf
-                <div class="login_form_box">
-                    <div>
-                        <canvas id="the-canvas1" class="canvas_edit"></canvas>
-                    </div>
-                    <div class="form_kanan">
-                        <div>
-                            <label for="email">Judul</label>
-                            <input type="text" name="judul" id="judul" value="{{$admin->judul}}">
+            <div class="form__box">
+                <form action="/admin/{{$magazine->id}}" method="POST" id="edit__form" class="edit__form" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
+                    <div class="login_form_box">
+                        <div class="sampul__edit">
+                            <img src="{{URL::asset('storage/'.$magazine->sampul)}}" alt="">
+                            {{-- <canvas id="the-canvas1" class="canvas_edit"></canvas> --}}
                         </div>
-                        <div>
-                            <label  >Deskripsi</label>
-                            <input type="text" name="deskripsi" id="deskripsi" value="{{$admin->deskripsi}}">
-                        </div> 
-                        <div>
-                            <label >Edisi</label>
-                            <input type="text" name="edisi" id="edisi" value="{{$admin->edisi}}">
+                        <div class="form_kanan">
+                            <div>
+                                <label for="email">Judul</label>
+                                <input type="text" name="judul" id="judul" value="{{$magazine->judul}}">
+                            </div>
+                            <div>
+                                <label  >Deskripsi</label>
+                                <input type="text" name="deskripsi" id="deskripsi" value="{{$magazine->deskripsi}}">
+                            </div> 
+                            <div>
+                                <label >Edisi</label>
+                                <input type="text" name="edisi" id="edisi" value="{{$magazine->edisi}}">
+                            </div>
+                            <div >
+                                <label  >Tanggal Terbit</label>
+                                <input type="text" name="tanggal_terbit" id="tanggal_terbit" value="{{$magazine->tanggal_terbit}}">
+                            </div>
+                            <div >
+                                <label for="password" >Tebal</label>
+                                <input type="text" name="tebal" id="tebal" value="{{$magazine->tebal}}">
+                            </div>
+                            <div >
+                                <label for="password" >Bahasa</label>
+                                <input type="text" name="bahasa" id="bahasa" value="{{$magazine->bahasa}}">
+                            </div>
+                            <div>
+                                <label >Sampul</label>
+                                <input type="file" name="sampul" id="file" value="{{$magazine->sampul}}">
+                            </div>
+                            <div>
+                                <label >File</label>
+                                <input type="file" name="file" id="file" value="{{$magazine->file}}">
+                            </div>
+                            <button type="button" class="save__button" data-bs-toggle="modal" data-bs-target="#saveChangesModal{{$magazine->id}}">Save changes</button>
+                            <button type="button" class="delete__button" data-bs-toggle="modal" data-bs-target="#deleteModal{{$magazine->id}}">Delete</button>
                         </div>
-                        <div >
-                            <label  >Tanggal Terbit</label>
-                            <input type="text" name="tanggal_terbit" id="tanggal_terbit" value="{{$admin->tanggal_terbit}}">
+                    </div>   
+                </form>
+                <form id="deleteForm{{$magazine->id}}" action="/admin/{{$magazine->id}}" style="display:none" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="button" class="login__button" data-bs-toggle="modal" data-bs-target="#deleteModal{{$magazine->id}}">DELETE</button>
+                    {{-- <button class="login__button" type="button" data-toggle="modal" data-target="#deleteModal{{$magazine->id}}">DELETE</button> --}}
+                </form>
+                
+                {{-- Modal untuk delete --}}
+                <div class="modal" id="deleteModal{{$magazine->id}}" aria-labelledby="deleteModalLabel{{$magazine->id}}" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Warning</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div >
-                            <label for="password" >Tebal</label>
-                            <input type="text" name="tebal" id="tebal" value="{{$admin->tebal}}">
+                        <div class="modal-body">
+                          <p style="font-size:16px">Apakah kamu yakin untuk menghapus PDF / majalah ini?</p>  
+                          <p style="font-size:16px">Note : Majalah yang sudah dihapus tidak akan bisa dikembalikan lagi.</p>
                         </div>
-                        <div >
-                            <label for="password" >Bahasa</label>
-                            <input type="text" name="bahasa" id="bahasa" value="{{$admin->bahasa}}">
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-danger" form="deleteForm{{$magazine->id}}">DELETE</button>
                         </div>
-                        <div>
-                            <label >File</label>
-                            <input type="file" name="file" id="file" value="{{$admin->file}}">
-                        </div>
-                        <button class="login__button">Save changes</button>
+                      </div>
                     </div>
                 </div>
-                
-            </form>
+                {{-- Modal untuk save changes --}}
+                <div class="modal" id="saveChangesModal{{$magazine->id}}" aria-labelledby="saveChangesModalLabel{{$magazine->id}}" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Warning</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p style="font-size:16px">Apakah kamu yakin untuk menyimpan perubahan ?</p>  
+                          <p style="font-size:16px">Note : Data sebelumnya tidak dapat mengembalikan.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-danger" form="edit__form">Save Changes</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+        
+            </div>
+
         </div>
-        <footer style="background-color: #2C2C2C;height:300px;width:100%">
-            <p>^</p>
-            Back To Top
-        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
         <script>
             async function renderPage(url, index) {
             const canvas = document.querySelector('#the-canvas'+index);
@@ -191,8 +252,8 @@
             await page.render(renderContext).promise;
 
         }
-        const listMagazine = @json($admin);
-            renderPage( listMagazine.file, 1);
+        const listMagazine = @json($magazine);
+            renderPage( listMagazine., 1);
         </script>
             <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
             <script src="{{ URL::asset('libraryJs/pdf.worker.js') }}"></script>

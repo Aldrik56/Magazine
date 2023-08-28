@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal_terbit');
             $table->integer('tebal');
             $table->string('bahasa');
+            $table->string('sampul');
             $table->string('file')->nullable();
             $table->timestamps();
         });

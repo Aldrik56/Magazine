@@ -1,7 +1,5 @@
-import './bootstrap';
+// import './bootstrap';
 // import Swiper from 'swiper/bundle';
-import Swiper from "swiper";
-import { Autoplay, Navigation, Pagination } from "swiper";
 
-const Swiper = require('swiper').default;
-Swiper.use([Autoplay, Navigation, Pagination]);
+// import { Autoplay, Navigation, Pagination, Swiper } from "swiper";
+// Swiper.use([ Navigation, Pagination]);
