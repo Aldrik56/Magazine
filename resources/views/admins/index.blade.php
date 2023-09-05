@@ -281,8 +281,6 @@
         async function renderPage(url, index) {
         const canvas = document.querySelector('#the-canvas'+index);
         const magazineUrl = '{{ asset('storage/') }}/' + url;
-
-        console.log(magazineUrl);
         var loadingTask = pdfjsLib.getDocument(magazineUrl);
         var scale = 1;
         const context = canvas.getContext('2d');
@@ -305,7 +303,6 @@
     // ini buat render semua magazine
     const listMagazine = @json($list_magazine);
     listMagazine.forEach((magazine, index) => {
-        console.log(magazine.file);
         renderPage( magazine.file, index + 1);
     });
     </script>

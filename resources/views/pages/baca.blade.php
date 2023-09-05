@@ -75,7 +75,7 @@
         }
 
         $(window).ready(function() {
-            if(window.innerWidth<=980){
+            if(window.innerWidth<=820){
                 $("#magazine").turn("display", "single");
                 setStyleMobile(1);
             }else {
@@ -95,7 +95,6 @@
                     }
                 }
                 totalPage=parseInt(pdf.numPages);
-                console.log(totalPage);
                 for (var i = 1; i <= pdf.numPages; i++) {
                     renderPage(i);
                 }
@@ -106,7 +105,7 @@
         });
 
         $(window).resize(function() {
-            if(window.innerWidth<=980){
+            if(window.innerWidth<=820){
                 $("#magazine").turn("display", "single");
                 setStyleMobile(currentPage);
             }else{
@@ -211,7 +210,6 @@
         });
         next_button.addEventListener('click',()=>{
             $('#magazine').turn('next');
-            console.log(currentPage);
         });
         prev_button.addEventListener('click',()=>{
             page__slider.value = currentPage;

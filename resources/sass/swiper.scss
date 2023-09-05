@@ -3,178 +3,172 @@
   padding: 0px;
 }
 
-.swiper > div {
-    flex:1;
+.mySwiper {
+  position: relative;
+  display: none;
+}
+swiper-slide {
+  position:relative !important;
+
+  padding-bottom: 10px;
+  width:fit-content !important;
+  height: fit-content !important;
   }
-  .swiper__section {
-    margin-top: 100px;
+.sampulMagazine__hoverBox:hover .swiperSlide__buttons {
+  // mix-blend-mode: hard-light;
+    display: flex;
+  // display: flex;
+  
+}
+.sampulMagazine__hoverBox:hover {
+  transform: scale(1);
+}
+
+.displayGrid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.sampulMagazine__container {
+  .sampulMagazine__hoverBox {
+    width: 100%;
+    height: 100%;
   }
-  swiper-slide {
-    position:relative !important;
-    padding-bottom: 10px;
-    width:fit-content;
-    height: fit-content;
+  p {
+    width:250px;
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight:700;
+  }
+  .sampulPDF1 {
+    width: 100%;
+    height: auto;
+    box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+  }
+  .sampulPDF2 {
+    width:220px;
+    height:362px;
   }
   .swiper-box {
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 100%;
     padding:0px 200px;
     gap:20px;
   }
-  .mySwiper {
+  .swiperSlide__buttons {
+    -webkit-backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.55);
+    display: none;
+    position:absolute;
+    gap:20px;
+    margin-top: 20px;
+    button {
+      border: none;
+      background-color: #FAFAFA;
+      height:70px;
   
-    // justify-content: space-between;
-    // width: 90vw;
-    .swiperSlide__buttons {
-      -webkit-backdrop-filter: blur(20px);
-      background-color: rgba(0, 0, 0, 0.55);
-      display: none;
-      position:absolute;
-      gap:20px;
-      margin-top: 20px;
-      button {
-        border: none;
-        background-color: #FAFAFA;
-        height:70px;
-
-      }
-  
-      a {
-        font-size: 28px;
-        text-decoration: none;
-        color:inherit;
-      }
-  
-      *:hover {
-        cursor: pointer;
-      }
-      .read {
-        background-color:#E92233;
-        color:white;
-
-      }
-  
-      .desc {
-        color: #ED2736 !important;
-        border:#E92233 solid 3px !important;
-
-      }
-    }
-    
-    swiper-slide:hover .swiperSlide__buttons {
-    // mix-blend-mode: hard-light;
-      display: flex;
-    // display: flex;
-    
-    }
-    swiper-slide:hover {
-      transform: scale(0.97);
-    }
-    swiper-slide {
-      // padding-left:4px;
-    }
-    .sampulPDF {
-      width: 250px;
-      height: 362px;
-      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-    }
-    h3 {
-      font-size: 2rem;
-      font-weight:700;
     }
   
-    .magazines {
-      // --swiperIndex:0;
-      display: flex;
-      overflow: hidden;
-      width: 100%;
-      position: relative;
-      .magazine {
-        position: relative;
-        flex: 0 0 calc(100%/var(--items-in-view));
-        max-width: calc(100%/var(--items-in-view));
-        transition: 0.5s;
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        
-        .img__container {
-          width: 90%;
-          height: 90%;
-          background-color: white;
-          position: relative;
-        }
-  
-        img {
-          height: 362.76px;
-        }
-  
-        .magazine__lightbox {
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.7);
-          position: absolute;
-          display: none;
-          justify-content: center;  
-          align-items: center;
-          top: 0;
-          left: 5px;
-          z-index: 1;
-          transition: 0.5s;
-        }
-  
-      }
-  
-      .magazine:hover {
-        .magazine__lightbox {
-          display: flex;
-        }
-      }
-     
+    a {
+      font-size: 28px;
+      text-decoration: none;
+      color:inherit;
     }
   
-    .toggle {
-      background: rgba(255, 255, 255, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30px;
-      height: 150px;
-      z-index: 2;
-      position: absolute;
-      border-radius: 10px;
-      // transform: translateY(-15%);
-      
+    *:hover {
+      cursor: pointer;
     }
-    
-    .right {
-      right:20px;
+    .read {
+      background-color:#E92233;
+      color:white;
+  
     }
-    
-    .left {
-      left:0px;
+  
+    .desc {
+      color: #ED2736 !important;
+      border:#E92233 solid 3px !important;
+  
     }
-    
   }
+  
+}
   
   
   @media (max-width:2560px){
-    .swiper__section {
+    .magazineCollection__section {
+      margin-top: 100px;
+      width:100vw;
+    }
+
+    .displayGrid {
+      display:grid;
+      align-content: center;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap:32px;
+    }
+    .swiper-box {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      width: 100%;
+      padding:0px 200px;
+      gap:20px;
+
+      select {
+        padding: 8px;
+        font-size: 24px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+        background-color: #fff;
+      }
+      
+      /* Style the options */
+      option {
+          font-size: 16px;
+          background-color: #fff;
+      }
+      
+      /* Style the selected option */
+      select:focus {
+          outline: none;
+          border-color: #007BFF;
+      }
+
       h1 {
         font-size:36px;
         font-family: verdana;
         font-weight: 600;
       }
+      h3 {
+        font-size: 2rem;
+        font-weight:700;
+      }
       p {
         font-size:20px;
         font-family: verdana;
+        width:250px;
       }
     }
-    .mySwiper {
-      p {
+    .sampulMagazine__container {
+      .sampulMagazine__hoverBox {
+        width:100%;
+        height: 100% !important;
+      }
+
+
+      .sampulPDF1 {
+        width: 100%;
+        height: 362px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
+      .sampulPDF2 {
         width: 250px;
+        height: 362px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
       }
       .swiperSlide__buttons {
         -webkit-backdrop-filter: blur(20px);
@@ -183,7 +177,7 @@
         position:absolute;
         top:0px;
         margin: 0px !important;
-        width: 250px;
+        width: 100%!important;
         height: 362px;
         gap:20px;
         justify-content: center;
@@ -223,15 +217,12 @@
           border-color: #E92233;
         }
       }
+      
     }
-    .swiper__section{
-      position:relative;
-      width:100vw;
-    }
-  
     .swiperControl {
       position: absolute;
       width:fit-content;
+      display: none;
       right:200px;
       z-index: 9;
       top: 98px;
@@ -243,18 +234,30 @@
         background-color: transparent;
       }
     }
-    .sampulPDF {
-      width: 250px;
-      height: 362px;
-      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-    }
   
   }
-  @media (max-width:1760px){
-
-  }
   @media (max-width:1560px){
-    .swiper__section {
+    .magazineCollection__section {
+      margin-top: 100px;
+    }
+    .displayGrid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      column-gap:60px;
+      row-gap: 30px;
+    }
+    .swiper-box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding:0px 150px;
+      gap:20px;
+    }
+    .sampulMagazine__container {
+      .sampulMagazine__hoverBox {
+        width: 100%;
+        height:342px;
+      }
       h1 {
         font-size:36px;
         font-family: verdana;
@@ -263,11 +266,22 @@
       p {
         font-size:20px;
         font-family: verdana;
+        width:220px;
       }
-    }
-    .mySwiper {
-      p {
+      h3 {
+        font-size: 2rem;
+        font-weight:700;
+      }
+      .sampulPDF1 {
+        width: 100%;
+        height: 342px;
+        aspect-ratio: 1/1.5;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
+      .sampulPDF2 {
         width: 250px;
+        height: 342px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
       }
       .swiperSlide__buttons {
         -webkit-backdrop-filter: blur(20px);
@@ -316,80 +330,182 @@
           border-color: #E92233;
         }
       }
+      
     }
-    .swiper-box {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding:0px 150px;
-        gap:20px;
-      }
-      .swiperControl {
-        position: absolute;
-        width:fit-content;
-        right:149px;
-        z-index: 9;
-        top: 98px;
-        padding:0px;
-        margin:0px;
-    
-        .next_button {
-          border:none;
-          background-color: transparent;
-        }
-      }
-  } 
   
-  @media (max-width:1280px){
-    .swiper__section {
-      margin-top: 50px;
+    .swiperControl {
+      position: absolute;
+      width:fit-content;
+      right:148px;
+      z-index: 9;
+      top: 88px;
+      padding:0px;
+      margin:0px;
+  
+      .next_button {
+        border:none;
+        background-color: transparent;
+      }
     }
-    
+  } 
+
+  @media (max-width:1440px){
+    .magazineCollection__section {
+      margin-top: 100px;
+    }
+    .displayGrid {
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap:60px;
+      row-gap: 30px;
+    }
     .swiper-box {
       display: flex;
       flex-direction: column;
       width: 100%;
-      padding:0px 100px;
+      padding:0px 150px;
       gap:20px;
+    }
+    .sampulMagazine__container {
+      .sampulMagazine__hoverBox {
+        width: 100%;
+        height:342px;
+      }
       h1 {
-        font-size:32px;
+        font-size:36px;
         font-family: verdana;
         font-weight: 600;
       }
       p {
         font-size:20px;
         font-family: verdana;
+        width:220px;
       }
-    }
-      .swiperControl {
-        position: absolute;
-        width:fit-content;
-        right:98px;
-        z-index: 9;
-        top: 94px;
-        padding:0px;
-        margin:0px;
-        img {
-            height:220px;
-            width:auto;
-          }
+      h3 {
+        font-size: 2rem;
+        font-weight:700;
+      }
+      .sampulPDF1 {
+        width: 100%;
+        height: 342px;
+        aspect-ratio: 1/1.5;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
+      .sampulPDF2 {
+        width: 250px;
+        height: 342px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
+      .swiperSlide__buttons {
+        -webkit-backdrop-filter: blur(20px);
+        background-color: rgba(0, 0, 0, 0.55);
+        display: none;
+        position:absolute;
+        top:0px;
+        margin: 0px !important;
+        width: 250px;
+        height: 362px;
+        gap:20px;
+        justify-content: center;
+        align-items: center;
+        
+        button {
+          border: none;
+          background-color: #FAFAFA;
+        }
+        * {
+          width:220px;
+          height:60px;
+          border-radius: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
     
-        .next_button {
-          border:none;
-          background-color: transparent;
+        a {
+          font-size:24px;
+          text-decoration: none;
+          color:inherit;
+        }
+    
+        *:hover {
+          cursor: pointer;
+        }
+        .read {
+          background-color:#E92233;
+          color:white;
+        }
+    
+        .desc {
+          color: #ED2736;
+          background-color: #F8F8F8;
+          border-style: solid;
+          border-color: #E92233;
         }
       }
-    .mySwiper {
-      .sampulPDF {
-          width: 200px;
-          height: 280px;
-          box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      
+    }
+  
+    .swiperControl {
+      position: absolute;
+      width:fit-content;
+      right:148px;
+      z-index: 9;
+      top: 88px;
+      padding:0px;
+      margin:0px;
+  
+      .next_button {
+        border:none;
+        background-color: transparent;
+      }
+    }
+  }
+  
+  @media (max-width:1280px){
+    .magazineCollection__section {
+      margin-top: 50px;
+    }
+    .displayGrid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap:32px;
+    }
+    .swiper-box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding:0px 100px;
+      gap:20px;
+    }
+    .sampulMagazine__container {
+      .sampulMagazine__hoverBox {
+        width: 100%;
+        height: 282px;
+      }
+      h1 {
+        font-size:36px;
+        font-family: verdana;
+        font-weight: 600;
       }
       p {
-        width: 200px;
+        font-size:20px;
+        font-family: verdana;
+        width: 100%;
       }
-      
-
+      h3 {
+        font-size: 2rem;
+        font-weight:700;
+      }
+      .sampulPDF1 {
+        width:100%;
+        height:282px;
+      }
+      .sampulPDF2 {
+        width: 190px;
+        height: 282px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
       .swiperSlide__buttons {
         -webkit-backdrop-filter: blur(20px);
         background-color: rgba(0, 0, 0, 0.55);
@@ -437,21 +553,97 @@
           border-color: #E92233;
         }
       }
-  }
+      
+    }
+  
+    .swiperControl {
+      position: absolute;
+      width:fit-content;
+      right:98px;
+      z-index: 9;
+      top: 88px;
+      padding:0px;
+      margin:0px;
+  
+      .next_button {
+        border:none;
+        background-color: transparent;
+      }
+    }
 }
   
   
   @media (max-width:821px){
-    .mySwiper {
+    .displayGrid {
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap:20px;
+    }
+    .swiper-box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding:0px 50px;
+      gap:20px;
+      select {
+        padding: 8px;
+        font-size: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 120px;
+      }
+      
+      /* Style the options */
+      option {
+          font-size: 16px;
+          background-color: #fff;
+      }
+      
+      /* Style the selected option */
+      select:focus {
+          outline: none;
+          border-color: #007BFF;
+      }
+      h1 {
+        font-size:24px;
+        font-family: verdana;
+        font-weight: 600;
+      }
+      p {
+        font-size:16px;
+        font-family: verdana;
+        width: 100%;
+      }
+      h3 {
+        font-size: 2rem;
+        font-weight:700;
+      }
+      
+    }
+    .sampulMagazine__container {
+      .sampulMagazine__hoverBox {
+        width: 100%;
+        height: 240px;
+      }
+      .sampulPDF1 {
+        width: 100%;
+        height: 240px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
+      .sampulPDF2 {
+        width: 180px;
+        height: 240px;
+        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+      }
       .swiperSlide__buttons {
         -webkit-backdrop-filter: blur(20px);
         background-color: rgba(0, 0, 0, 0.55);
         display: none;
         position:absolute;
         top:0px;
-        margin: 0px;
-        width: 160px;
-        height: 230px;
+        margin: 0px !important;
+        width:200px;
+        height:280px;
         gap:20px;
         justify-content: center;
         align-items: center;
@@ -461,8 +653,8 @@
           background-color: #FAFAFA;
         }
         * {
-          width:120px;
-          height:40px;
+          width:180px;
+          height:50px;
           border-radius: 40px;
           display: flex;
           justify-content: center;
@@ -470,7 +662,7 @@
         }
     
         a {
-          font-size:18px;
+          font-size:20px;
           text-decoration: none;
           color:inherit;
         }
@@ -490,77 +682,111 @@
           border-color: #E92233;
         }
       }
-    }
-    .swiper__section {
-      margin-top: 24px;
-    }
-    .swiper-box {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding:0px 50px;
-      gap:16px;
-
-      h1 {
-        font-size:32px;
-        font-family: verdana;
-        font-weight: 600;
-      }
-      p {
-        font-size:16px;
-        font-family: verdana;
-      }
-    }
-      .mySwiper {
-        width: 100%;
-
-      .sampulPDF {
-        width: 160px;
-        height: 230px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-        }
-        p {
-          width:140px;
-        }
-      }
       
-      .swiperControl {
-        position: absolute;
-        width:fit-content;
-        right:48px;
-        z-index: 9;
-        top: 78px;
-        padding:0px;
-        margin:0px;
-        display: flex;
-        justify-content: end;
-        img {
-          height:180px;
-          width:auto;
-        }
-        .next_button {
-        display: flex;
-        padding:0px;
-        width: 35.4px;
-        justify-content: end;
+    }
+    .mySwiper {
+      p {
+        width:180px;
+      }
+    }
+  
+    .swiperControl {
+      position: absolute;
+      width:fit-content;
+      right:48px;
+      z-index: 9;
+      top: 82px;
+      padding:0px;
+      margin:0px;
+      
+      img {
+        width:auto;
+        height:200px;
+      }
+      .next_button {
         border:none;
         background-color: transparent;
       }
-      }
+    }
+  
   
   }
 
 @media (max-width:520px){
-  .mySwiper {
+  .magazineCollection__section {
+    margin-top: 24px;
+  }
+  .displayGrid {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:24px;
+  }
+  .swiper-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 20px;
+    gap:20px;
+    select {
+      padding: 8px;
+      font-size: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 70px;
+      padding:2px;
+      height:100%;
+    }
+    
+    /* Style the options */
+    option {
+        font-size: 12px;
+        background-color: #fff;
+    }
+    
+    /* Style the selected option */
+    select:focus {
+        outline: none;
+        border-color: #007BFF;
+    }
+    h1 {
+      font-size:16px;
+      font-family: verdana;
+      font-weight: 600;
+    }
+    p {
+      font-size:12px;
+      font-family: verdana;
+      width: 100%;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
+    }
+  }
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
+      width: 100%;
+      height: 240px;
+    }
+    .sampulPDF1 {
+      width: 100%;
+      height: 160px;
+      box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
+    }
+    .sampulPDF2 {
+      width: 110px;
+      height: 160px;
+      box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
+    }
     .swiperSlide__buttons {
       -webkit-backdrop-filter: blur(20px);
       background-color: rgba(0, 0, 0, 0.55);
       display: none;
       position:absolute;
       top:0px;
-      margin: 0px;
-      width: 110px;
-      height: 160px;
+      margin: 0px !important;
+      width:100%;
+      height:160px;
       gap:20px;
       justify-content: center;
       align-items: center;
@@ -571,15 +797,15 @@
       }
       * {
         width:100px;
-        height:40px;
-        border-radius: 40px;
+        height:30px;
+        border-radius: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
       }
   
       a {
-        font-size:16px;
+        font-size:12px;
         text-decoration: none;
         color:inherit;
       }
@@ -599,47 +825,27 @@
         border-color: #E92233;
       }
     }
-  }
-  .swiper-box {
-    width: 100%;
-    gap:8px !important;
-    padding:0px 20px;
-    h1 {
-      font-size:20px;
-      font-family: verdana;
-      font-weight: 600;
-    }
-
-    p {
-      font-size: 12px;
-    }
+    
   }
   .mySwiper {
-    .sampulPDF {
-      width: 110px;
-      height: 160px;
-      box-shadow: -3px 3px 3px 3px rgba(0, 0, 0, 0.50);
+    p {
+      width:110px;
     }
   }
+
   .swiperControl {
     position: absolute;
     width:fit-content;
-    right:19px;
+    right:18px;
     z-index: 9;
-    top: 50px;
+    top: 57px;
     padding:0px;
     margin:0px;
-    display: flex;
-    justify-content: end;
     img {
-      height:120px;
       width:auto;
+      height:130px;
     }
     .next_button {
-      display: flex;
-      padding:0px;
-      width: 35.4px;
-      justify-content: end;
       border:none;
       background-color: transparent;
     }
@@ -648,118 +854,77 @@
 }
 
   @media (max-width:432px){
-    .mySwiper {
+    .displayGrid {
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+    }
+    .swiper-box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding:0px 20px;
+      gap:20px;
+      select {
+        padding: 8px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 56px;
+        padding:2px;
+        height:100%;
+      }
+      
+      /* Style the options */
+      option {
+          font-size: 12px;
+          background-color: #fff;
+      }
+      
+      /* Style the selected option */
+      select:focus {
+          outline: none;
+          border-color: #007BFF;
+      }
       h1 {
-        font-size:12px;
+        font-size:14px;
         font-family: verdana;
         font-weight: 600;
       }
-
       p {
-        font-size: 10px;
+        font-size:9px;
+        font-family: verdana;
+        width: 100%;
       }
-      .mySwiper {
-        .swiperSlide__buttons {
-          -webkit-backdrop-filter: blur(20px);
-          background-color: rgba(0, 0, 0, 0.55);
-          display: none;
-          position:absolute;
-          top:0px;
-          margin: 0px;
-          width: 110px;
-          height: 160px;
-          gap:20px;
-          justify-content: center;
-          align-items: center;
-          
-          button {
-            border: none;
-            background-color: #FAFAFA;
-          }
-          * {
-            width:100px;
-            height:40px;
-            border-radius: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-      
-          a {
-            font-size:12px;
-            text-decoration: none;
-            color:inherit;
-          }
-      
-          *:hover {
-            cursor: pointer;
-          }
-          .read {
-            background-color:#E92233;
-            color:white;
-          }
-      
-          .desc {
-            color: #ED2736;
-            background-color: #F8F8F8;
-            border-style: solid;
-            border-color: #E92233;
-          }
-        }
+      h3 {
+        font-size: 2rem;
+        font-weight:700;
       }
     }
-
-    .swiper-box {
-      width: 100%;
-      gap:8px !important;
-      padding:0px 20px;
-      h1 {
-        font-size: 16px;
+    .sampulMagazine__container {
+      .sampulMagazine__hoverBox {
+        width: 100%;
+        height: 240px;
       }
-    }
-    .mySwiper {
-      .sampulPDF {
-        width: 110px;
-        height: 150px;
+      .sampulPDF1 {
+        width: 100%;
+        height: 160px;
         box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
       }
-    }
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      right:19px;
-      z-index: 9;
-      top: 40px;
-      padding:0px;
-      margin:0px;
-      display: flex;
-      justify-content: end;
-      img {
-        height:120px;
-        width:auto;
+      .sampulPDF2 {
+        width: 110px;
+        height: 160px;
+        box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
       }
-      .next_button {
-        display: flex;
-        padding:0px;
-        width: 35.4px;
-        justify-content: end;
-        border:none;
-        background-color: transparent;
-      }
-    }
-  }
-
-  @media (max-width:380px){
-    .mySwiper {
       .swiperSlide__buttons {
         -webkit-backdrop-filter: blur(20px);
         background-color: rgba(0, 0, 0, 0.55);
         display: none;
         position:absolute;
         top:0px;
-        margin: 0px;
-        width: 100px;
-        height: 150px;
+        margin: 0px !important;
+        width:100%;
+        height:160px;
         gap:20px;
         justify-content: center;
         align-items: center;
@@ -770,15 +935,15 @@
         }
         * {
           width:100px;
-          height:40px;
-          border-radius: 40px;
+          height:30px;
+          border-radius: 20px;
           display: flex;
           justify-content: center;
           align-items: center;
         }
     
         a {
-          font-size:16px;
+          font-size:12px;
           text-decoration: none;
           color:inherit;
         }
@@ -798,82 +963,32 @@
           border-color: #E92233;
         }
       }
-    }
-
-    .swiper-box {
-      width: 100%;
-      gap:8px !important;
-      padding:0px 20px;
-      h1 {
-        font-size: 16px;
-      }
+      
     }
     .mySwiper {
-      .sampulPDF {
-        width: 100px;
-        height: 150px;
-        box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
+      p {
+        width:110px;
       }
     }
+  
     .swiperControl {
       position: absolute;
       width:fit-content;
-      right:19px;
+      right:18px;
       z-index: 9;
-      top: 40px;
+      top: 57px;
       padding:0px;
       margin:0px;
-      display: flex;
-      justify-content: end;
       img {
-        height:120px;
         width:auto;
+        height:130px;
       }
+  
       .next_button {
-        display: flex;
-        padding:0px;
-        width: 35.4px;
-        justify-content: end;
-        border:none;
-        background-color: transparent;
-      }
-    }
-    .swiper-box {
-      width: 100%;
-      gap:8px !important;
-      padding:0px 20px;
-      h1 {
-        font-size: 16px;
-      }
-    }
-    .mySwiper {
-      .sampulPDF {
-        width: 100px;
-        height: 140px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-    }
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      right:19px;
-      z-index: 9;
-      top: 40px;
-      padding:0px;
-      margin:0px;
-      display: flex;
-      justify-content: end;
-      img {
-        height:120px;
-        width:auto;
-      }
-      .next_button {
-        display: flex;
-        padding:0px;
-        width: 35.4px;
-        justify-content: end;
         border:none;
         background-color: transparent;
       }
     }
   }
+
+ 

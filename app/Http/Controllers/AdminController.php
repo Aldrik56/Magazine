@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\List_magazines;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -21,7 +21,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        $list_magazine=List_magazines::all();
+        // $list_magazine=List_magazines::all();
+        $list_magazine = List_magazines::orderByRaw("CAST(SUBSTRING_INDEX(edisi, ', ', 1) AS UNSIGNED)")->get();
         if (Auth::check()) {
             $user = Auth::user();
             $name = $user->name;
@@ -82,7 +83,6 @@ class AdminController extends Controller
         $magazine->judul=$request->judul;
         $magazine->deskripsi=$request->deskripsi;
         $magazine->edisi=$request->edisi;
-        $magazine->tanggal_terbit=$request->tanggal_terbit;
         $magazine->tebal=$request->tebal;
         $magazine->bahasa=$request->bahasa;
         $magazine->file = $path;
@@ -142,7 +142,6 @@ class AdminController extends Controller
         $magazine->judul=$request->judul;
         $magazine->deskripsi=$request->deskripsi;
         $magazine->edisi=$request->edisi;
-        $magazine->tanggal_terbit=$request->tanggal_terbit;
         $magazine->tebal=$request->tebal;
         $magazine->bahasa=$request->bahasa;
 

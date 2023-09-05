@@ -14,10 +14,6 @@
                     <td>{{$magazine->edisi}}</td>
                 </tr>
                 <tr>
-                    <td>Terbit : </td>
-                    <td>{{$magazine->tanggal_terbit}}</td>
-                </tr>
-                <tr>
                     <td>Tebal : </td>
                     <td>{{$magazine->tebal}}</td>
                 </tr>
@@ -27,11 +23,13 @@
                 </tr>
             </table>
 
-            <form action="deskripsi" method="post" class='hero__buttons'>
-                <button type="submit" class='read'>
-                    <strong> <a href='/pdf/{{$magazine->id}}'>Read Now</a></strong>
-                </button>
-            </form>
+            <div class='hero__buttons'>
+                <a href='/pdf/{{$magazine->id}}'>
+                    <button type="submit" class='read'>
+                        <strong>Read Now</strong>
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
     <div class="second__section">

@@ -24,13 +24,26 @@ $red : #E92233;
     }
     .nav__content {
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding:20px 200px;
+        padding:20px 200px;
         display:flex;
         width:100%;
         align-items: center;
         justify-content: space-between;
         padding:20px 200px;
 
+        select {
+            outline:none;
+            border:none;
+            font-size: 24px;
+            color:$red;
+            background-color: #F9F9F9;
+            font-family: 'verdana';
+        }
+        option {
+            font-size: 24px;
+            color:$red;
+            font-family: 'verdana';
+        }
         .nav__menu__desktop {
             display: flex;
             gap:40px;
@@ -74,6 +87,56 @@ $red : #E92233;
                 display: flex;
                 gap:40px;
     
+                select {
+                    outline:none;
+                    border:none;
+                    font-size: 22px;
+                    color:$red;
+                    background-color: #F9F9F9;
+                    font-family: 'verdana';
+                }
+                option {
+                    font-size: 22px;
+                    color:$red;
+                }
+                a {
+                    text-decoration: none;
+                    color:$red;
+                    font-size:22px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:1440px){
+    .nav__user {
+        background: #F9F9F9;
+        // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        // padding:20px 0px;
+    
+        #hamburger-menu {
+            display: none;
+        }
+        .nav__menu__desktop {
+            display: flex;
+    
+        }
+        .nav__content {
+            display:flex;
+            width:100%;
+            align-items: center;
+            justify-content: space-between;
+            padding:20px 150px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            img {
+                width:250px;
+                height:auto;
+            }
+    
+            .nav__menu__desktop {
+                display: flex;
+                gap:40px;
+    
                 a {
                     text-decoration: none;
                     color:$red;
@@ -101,10 +164,10 @@ $red : #E92233;
             width:100%;
             align-items: center;
             justify-content: space-between;
-            padding:20px 100px;
+            padding:16px 100px;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             img {
-                width:300px;
+                width:250px;
                 height:auto;
             }
     
@@ -143,7 +206,7 @@ $red : #E92233;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            padding:20px 50px;
+            padding:16px 50px;
             img {
                 width:250px;
                 height:auto;
@@ -156,7 +219,7 @@ $red : #E92233;
                 a {
                     text-decoration: none;
                     color:$red;
-                    font-size:22px;
+                    font-size:16px;
                 }
             }
         }
@@ -165,17 +228,29 @@ $red : #E92233;
             background: #F9F9F9;
             flex-direction: column;
             margin-top: 0px;
-            padding:0px 50px;
+            padding:0px 50px 10px 50px;
             width:100vw;
             gap:5px;
             // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             box-shadow: 0px 5px 10px 0px rgba(0,0,0,.25);
+            select {
+                outline:none;
+                border:none;
+                background-color: #F9F9F9;
+                font-size: 16px;
+                color:$red;
+                font-family: 'verdana';
+            }
+            option {
+                font-size: 16px;
+                color:$red;
+            }
             a {
                 padding:8px;
                 text-decoration: none;
                 color:$red;
                 font-weight: 500;
-                font-size:22px;
+                font-size:16px;
             }
         }
     }
@@ -218,7 +293,7 @@ $red : #E92233;
                 a {
                     text-decoration: none;
                     color:$red;
-                    font-size:22px;
+                    font-size:16px;
                 }
             }
         }
@@ -227,15 +302,27 @@ $red : #E92233;
             background: #F9F9F9;
             flex-direction: column;
             margin-top: 0px;
-            padding:0px 20px;
+            padding:0px 20px 10px 20px;
             // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             box-shadow: 0px 5px 10px 0px rgba(0,0,0,.25);
+            select {
+                outline:none;
+                border:none;
+                background-color: #F9F9F9;
+                font-size: 16px;
+                color:$red;
+                font-family: 'verdana';
+            }
+            option {
+                font-size: 16px;
+                color:$red;
+            }
             a {
                 padding:8px;
                 text-decoration: none;
                 color:$red;
                 font-weight: 500;
-                font-size:22px;
+                font-size:16px;
             }
         }
     }
@@ -277,7 +364,7 @@ $red : #E92233;
                 a {
                     text-decoration: none;
                     color:$red;
-                    font-size:22px;
+                    font-size:12px;
                 }
             }
         }
@@ -287,9 +374,21 @@ $red : #E92233;
             justify-content: start;
             flex-direction: column;
             margin-top: 0px;
-            padding:0px 20px;
+            padding:0px 20px 10px 20px;
             // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             box-shadow: 0px 5px 10px 0px rgba(0,0,0,.25);
+            select {
+                outline:none;
+                border:none;
+                background-color: #F9F9F9;
+                font-size: 12px;
+                color:$red;
+                font-family: 'verdana';
+            }
+            option {
+                font-size: 12px;
+                color:$red;
+            }
             a {
                 padding:8px;
                 text-align: left;

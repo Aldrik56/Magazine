@@ -57,15 +57,7 @@ function swipe(dir) {
   }
   
   magazines.forEach((mag)=> {
-    // if (condition) {
-    //   mag.style.transform = `translateX(${100 * dir * sliderIndex}%)`;
-    //   console.log(mag.style.transform);
-    //   startDisplay = newStart;
-    //   endDisplay = newEnd;
-    // }
-
     mag.style.transform = `translateX(${-100 * sliderIndex}%)`;
-    console.log(mag.style.transform);
   });
 
 
@@ -96,9 +88,6 @@ buttons.forEach((button)=> {
 window.addEventListener('resize', ()=> {
   maxMagazinesDisplayed = getMaximumDisplayedMags();
   indexLimit = calculcateIndexLimit();
-
-  console.log(`resized max magazines displayed: ${ maxMagazinesDisplayed}`);
-  console.log(`resized index limit: ${indexLimit}`);
 })  
 
 //detect swipe on smartphone/tablet

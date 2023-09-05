@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('list_magazines', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->string('edisi');
-            $table->date('tanggal_terbit');
             $table->integer('tebal');
             $table->string('bahasa');
             $table->string('sampul');

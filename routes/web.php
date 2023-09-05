@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\MagazineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,9 @@ Route::controller(VisitorController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/pdf/{id}', 'show')->name('pages.baca');
     Route::get('/deskripsi/{id}','deskripsi')->name('pages.deskripsi');
+    Route::get('/fetch-sorted-data', 'fetchSortedData');
 });
+// Route::get('/fetch-sorted-data', 'MagazineController@fetchSortedData');
 
 // define route untuk admin
 Route::resource('admin', AdminController::class);
@@ -35,5 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 require __DIR__.'/auth.php';

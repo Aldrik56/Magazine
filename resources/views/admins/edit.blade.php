@@ -153,10 +153,6 @@
                                 <input type="text" name="edisi" id="edisi" value="{{$magazine->edisi}}">
                             </div>
                             <div >
-                                <label  >Tanggal Terbit</label>
-                                <input type="text" name="tanggal_terbit" id="tanggal_terbit" value="{{$magazine->tanggal_terbit}}">
-                            </div>
-                            <div >
                                 <label for="password" >Tebal</label>
                                 <input type="text" name="tebal" id="tebal" value="{{$magazine->tebal}}">
                             </div>
@@ -232,8 +228,6 @@
             async function renderPage(url, index) {
             const canvas = document.querySelector('#the-canvas'+index);
             const magazineUrl = '{{ asset('storage/') }}/' + url;
-
-            console.log(magazineUrl);
             var loadingTask = pdfjsLib.getDocument(magazineUrl);
             var scale = 1;
             const context = canvas.getContext('2d');

@@ -155,10 +155,6 @@
                 <input type="text" name="edisi" id="edisi">
             </div>
             <div >
-                <label  >Tanggal Terbit</label>
-                <input type="date" name="tanggal_terbit" id="tanggal_terbit" required>
-            </div>
-            <div >
                 <label for="password" >Tebal</label>
                 <input type="text" name="tebal" id="tebal" required>
             </div>
