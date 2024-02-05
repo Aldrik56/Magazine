@@ -1,9 +1,3 @@
-
-<?php
-$jumlahBuku=1;
-$pdfTerbaru = count($magazines)-1;
-?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -18,22 +12,23 @@ $pdfTerbaru = count($magazines)-1;
             </div>
             <p>
                 <?php
-                $deskripsi = $magazines[count($magazines) - 1]->deskripsi;
+                $deskripsi = $magazine->deskripsi;
                 $words = str_word_count($deskripsi,1);
-                $first_30_words = array_slice($words, 0, 30);
-                echo implode(' ', $first_30_words);
-                if (count($words) > 30) {
-                    echo '...'; 
+                $first_25_words = array_slice($words, 0, 25);
+                echo implode(' ', $first_25_words);
+                if (count($words) > 25) {
+                    echo '... '; 
                 }
                 ?>
+                <a style="color:#B9B9B9;text-decoration:none" href="/deskripsi/{{$magazine->id}}" >Read More</a>
             </p>
             <div class='hero__buttons'>
-                <a href='/pdf/{{$magazines[count($magazines)-1]->id}}'>
+                <a href='/pdf/{{$magazine->id}}'>
                     <button type="submit" class='read'>
                         <strong>Read Now</strong>
                     </button>
                 </a>
-                <a href='/deskripsi/{{$magazines[count($magazines)-1]->id}}'>
+                <a href='/deskripsi/{{$magazine->id}}'>
                     <button type="submit" class="desc">
                         <strong>Description</strong>
                     </button>
@@ -41,7 +36,7 @@ $pdfTerbaru = count($magazines)-1;
             </div>
         </div>
         <div class='illustration'>
-            <img src="{{ URL::asset('storage/' . $magazines[count($magazines) - 1]->sampul) }}" id="highlight_magazine">
+            <img src="{{ URL::asset('storage/' . $magazine->sampul) }}" id="highlight_magazine"/>
         </div>
     </div>
 

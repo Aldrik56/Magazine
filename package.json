@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "pspdfkit": "^2023.4.2",
         "sass": "^1.63.6",
         "swiper": "^10.1.0"
     }

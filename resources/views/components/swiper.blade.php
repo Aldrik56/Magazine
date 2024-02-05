@@ -20,6 +20,7 @@ $i=0;
                     <option value="" disabled selected>Sort</option>
                     <option value="oldest">Oldest</option>
                     <option value="latest">Latest</option>
+                    <option value="special_edition">Special Edition</option>
                 </select>
             </div>
         </div>
@@ -30,90 +31,46 @@ $i=0;
         </div>
         {{-- Display grid --}}
         <div class="displayGrid sampulMagazine__container">
-            @if($sorting === "oldest")
-                @for($i=0;$i<count($magazines);$i++)
-                    <div class="sampulMagazine__hoverBox">
-                        <img src="{{ URL::asset('storage/' . $magazines[$i]->sampul) }}" class="sampulPDF1">
-                        <p>{{$magazines[$i]->judul}}</p>
-                        <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
-                            <a href='/pdf/{{$magazines[$i]->id}}'>
-                                <div class='read'>
-                                    <strong> Read Now</strong>
-                                </div>
-                            </a>
-                            <a href='/deskripsi/{{$magazines[$i]->id}}'>
-                                <div class='desc'>
-                                    <strong>Description</strong>
-                                </div>
-                            </a>
+            @foreach($magazines as $magazine)
+            <div class="sampulMagazine__hoverBox">
+                <img src="{{ URL::asset('storage/' . $magazine->sampul) }}" class="sampulPDF1">
+                <p>{{$magazine->judul}}</p>
+                <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
+                    <a href='/pdf/{{$magazine->id}}'>
+                        <div class='read'>
+                            <strong> Read Now</strong>
                         </div>
-                    </div>
-                @endfor
-            @else
-                @for($i=count($magazines);$i >= 0;$i--)
-                    <swiper-slide class="sampulMagazine__hoverBox">
-                        <img src="{{ URL::asset('storage/' . $magazines[$i]->sampul) }}" class="sampulPDF2">
-                        <p>{{$magazines[$i]->judul}}</p>
-                        <?php $jumlahBuku++; ?>
-                        <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
-                            <a href='/pdf/{{$magazines[$i]->id}}'>
-                                <div class='read'>
-                                    <strong> Read Now</strong>
-                                </div>
-                            </a>
-                            <a href='/deskripsi/{{$magazines[$i]->id}}'>
-                                <div class='desc'>
-                                    <strong>Description</strong>
-                                </div>
-                            </a>
+                    </a>
+                    <a href='/deskripsi/{{$magazine->id}}'>
+                        <div class='desc'>
+                            <strong>Description</strong>
                         </div>
-                    </swiper-slide>
-                @endfor
-            @endif
+                    </a>
+                </div>
+            </div>
+            @endforeach
         </div>
         {{-- Display simple --}}
         <swiper-container class="mySwiper sampulMagazine__container" id="mySwiper">
             {{-- {{$sorting === "latest" ? @for($i=0;i<count($magazines)-1;i++) : @for($i=count($magazines)-1;i >= 0;i--)}} --}}
-            @if($sorting === "oldest")
-                @for($i=0;$i<count($magazines);$i++)
-                    <swiper-slide class="sampulMagazine__hoverBox">
-                        <img src="{{ URL::asset('storage/' . $magazines[$i]->sampul) }}" class="sampulPDF2">
-                        <p>{{$magazines[$i]->judul}}</p>
-                        <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
-                            <a href='/pdf/{{$magazines[$i]->id}}'>
-                                <div class='read'>
-                                    <strong>Read Now</strong>
-                                </div>
-                            </a>
-                            <a href='/deskripsi/{{$magazines[$i]->id}}'>
-                                <div class='desc'>
-                                    <strong>Description</strong>
-                                </div>
-                            </a>
-                        </div>
-                    </swiper-slide>
-                @endfor
-            @else
-            @for($i=count($magazines);$i >= 0;$i--)
-                    <swiper-slide class="sampulMagazine__hoverBox">
-                        <img src="{{ URL::asset('storage/' . $magazines[$i]->sampul) }}" class="sampulPDF2">
-                        <p>{{$magazines[$i]->judul}}</p>
-                        <?php $jumlahBuku++; ?>
-                        <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
-                            <a href='/pdf/{{$magazines[$i]->id}}'>
-                                <div class='read'>
-                                    <strong>Read Now</strong>
-                                </div>
-                            </a>
-                            <a href='/deskripsi/{{$magazines[$i]->id}}'>
-                                <div class='desc'>
-                                    <strong>Description</strong>
-                                </div>
-                            </a>
-                        </div>
-                    </swiper-slide>
-                @endfor
-            @endif
+                @foreach($magazines as $magazine)
+                <div class="sampulMagazine__hoverBox">
+                    <img src="{{ URL::asset('storage/' . $magazine->sampul) }}" class="sampulPDF1">
+                    <p>{{$magazine->judul}}</p>
+                    <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
+                        <a href='/pdf/{{$magazine->id}}'>
+                            <div class='read'>
+                                <strong> Read Now</strong>
+                            </div>
+                        </a>
+                        <a href='/deskripsi/{{$magazine->id}}'>
+                            <div class='desc'>
+                                <strong>Description</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
       </swiper-container>
     </div>
 </div>

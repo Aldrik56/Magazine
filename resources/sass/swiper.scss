@@ -97,257 +97,257 @@ swiper-slide {
 }
   
   
-  @media (max-width:2560px){
-    .magazineCollection__section {
-      margin-top: 100px;
-      width:100vw;
-    }
-
-    .displayGrid {
-      display:grid;
-      align-content: center;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap:32px;
-    }
-    .swiper-box {
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      width: 100%;
-      padding:0px 200px;
-      gap:20px;
-
-      select {
-        padding: 8px;
-        font-size: 24px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 200px;
-        background-color: #fff;
-      }
-      
-      /* Style the options */
-      option {
-          font-size: 16px;
-          background-color: #fff;
-      }
-      
-      /* Style the selected option */
-      select:focus {
-          outline: none;
-          border-color: #007BFF;
-      }
-
-      h1 {
-        font-size:36px;
-        font-family: verdana;
-        font-weight: 600;
-      }
-      h3 {
-        font-size: 2rem;
-        font-weight:700;
-      }
-      p {
-        font-size:20px;
-        font-family: verdana;
-        width:250px;
-      }
-    }
-    .sampulMagazine__container {
-      .sampulMagazine__hoverBox {
-        width:100%;
-        height: 100% !important;
-      }
-
-
-      .sampulPDF1 {
-        width: 100%;
-        height: 362px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .sampulPDF2 {
-        width: 250px;
-        height: 362px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .swiperSlide__buttons {
-        -webkit-backdrop-filter: blur(20px);
-        background-color: rgba(0, 0, 0, 0.55);
-        display: none;
-        position:absolute;
-        top:0px;
-        margin: 0px !important;
-        width: 100%!important;
-        height: 362px;
-        gap:20px;
-        justify-content: center;
-        align-items: center;
-        
-        button {
-          border: none;
-          background-color: #FAFAFA;
-        }
-        * {
-          width:220px;
-          height:60px;
-          border-radius: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-    
-        a {
-          font-size:24px;
-          text-decoration: none;
-          color:inherit;
-        }
-    
-        *:hover {
-          cursor: pointer;
-        }
-        .read {
-          background-color:#E92233;
-          color:white;
-        }
-    
-        .desc {
-          color: #ED2736;
-          background-color: #F8F8F8;
-          border-style: solid;
-          border-color: #E92233;
-        }
-      }
-      
-    }
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      display: none;
-      right:200px;
-      z-index: 9;
-      top: 98px;
-      padding:0px;
-      margin:0px;
-  
-      .next_button {
-        border:none;
-        background-color: transparent;
-      }
-    }
-  
+@media (max-width:2560px){
+  .magazineCollection__section {
+    margin-top: 100px;
+    width:100vw;
   }
-  @media (max-width:1560px){
-    .magazineCollection__section {
-      margin-top: 100px;
+
+  .displayGrid {
+    display:grid;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap:32px;
+  }
+  .swiper-box {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 200px;
+    gap:20px;
+
+    select {
+      padding: 8px;
+      font-size: 24px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+      background-color: #fff;
     }
-    .displayGrid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      column-gap:60px;
-      row-gap: 30px;
+    
+    /* Style the options */
+    option {
+        font-size: 16px;
+        background-color: #fff;
     }
-    .swiper-box {
-      display: flex;
-      flex-direction: column;
+    
+    /* Style the selected option */
+    select:focus {
+        outline: none;
+        border-color: #007BFF;
+    }
+
+    h1 {
+      font-size:36px;
+      font-family: verdana;
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
+    }
+    p {
+      font-size:20px;
+      font-family: verdana;
+      width:250px;
+    }
+  }
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
+      width:100%;
+      height: 100% !important;
+    }
+
+
+    .sampulPDF1 {
       width: 100%;
-      padding:0px 150px;
-      gap:20px;
+      height: 362px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
     }
-    .sampulMagazine__container {
-      .sampulMagazine__hoverBox {
-        width: 100%;
-        height:342px;
+    .sampulPDF2 {
+      width: 250px;
+      height: 362px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .swiperSlide__buttons {
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(0, 0, 0, 0.55);
+      display: none;
+      position:absolute;
+      top:0px;
+      margin: 0px !important;
+      width: 100%!important;
+      height: 362px;
+      gap:20px;
+      justify-content: center;
+      align-items: center;
+      
+      button {
+        border: none;
+        background-color: #FAFAFA;
       }
-      h1 {
-        font-size:36px;
-        font-family: verdana;
-        font-weight: 600;
-      }
-      p {
-        font-size:20px;
-        font-family: verdana;
+      * {
         width:220px;
-      }
-      h3 {
-        font-size: 2rem;
-        font-weight:700;
-      }
-      .sampulPDF1 {
-        width: 100%;
-        height: 342px;
-        aspect-ratio: 1/1.5;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .sampulPDF2 {
-        width: 250px;
-        height: 342px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .swiperSlide__buttons {
-        -webkit-backdrop-filter: blur(20px);
-        background-color: rgba(0, 0, 0, 0.55);
-        display: none;
-        position:absolute;
-        top:0px;
-        margin: 0px !important;
-        width: 250px;
-        height: 362px;
-        gap:20px;
+        height:60px;
+        border-radius: 40px;
+        display: flex;
         justify-content: center;
         align-items: center;
-        
-        button {
-          border: none;
-          background-color: #FAFAFA;
-        }
-        * {
-          width:220px;
-          height:60px;
-          border-radius: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-    
-        a {
-          font-size:24px;
-          text-decoration: none;
-          color:inherit;
-        }
-    
-        *:hover {
-          cursor: pointer;
-        }
-        .read {
-          background-color:#E92233;
-          color:white;
-        }
-    
-        .desc {
-          color: #ED2736;
-          background-color: #F8F8F8;
-          border-style: solid;
-          border-color: #E92233;
-        }
       }
+  
+      a {
+        font-size:24px;
+        text-decoration: none;
+        color:inherit;
+      }
+  
+      *:hover {
+        cursor: pointer;
+      }
+      .read {
+        background-color:#E92233;
+        color:white;
+      }
+  
+      .desc {
+        color: #ED2736;
+        background-color: #F8F8F8;
+        border-style: solid;
+        border-color: #E92233;
+      }
+    }
+    
+  }
+  .swiperControl {
+    position: absolute;
+    width:fit-content;
+    display: none;
+    right:200px;
+    z-index: 9;
+    top: 98px;
+    padding:0px;
+    margin:0px;
+
+    .next_button {
+      border:none;
+      background-color: transparent;
+    }
+  }
+
+}
+@media (max-width:1560px){
+  .magazineCollection__section {
+    margin-top: 100px;
+  }
+  .displayGrid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    column-gap:60px;
+    row-gap: 30px;
+  }
+  .swiper-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 150px;
+    gap:20px;
+  }
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
+      width: 100%;
+      height:342px;
+    }
+    h1 {
+      font-size:36px;
+      font-family: verdana;
+      font-weight: 600;
+    }
+    p {
+      font-size:20px;
+      font-family: verdana;
+      width:220px;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
+    }
+    .sampulPDF1 {
+      width: 100%;
+      height: 342px;
+      aspect-ratio: 1/1.5;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .sampulPDF2 {
+      width: 250px;
+      height: 342px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .swiperSlide__buttons {
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(0, 0, 0, 0.55);
+      display: none;
+      position:absolute;
+      top:0px;
+      margin: 0px !important;
+      width: 250px;
+      height: 362px;
+      gap:20px;
+      justify-content: center;
+      align-items: center;
       
-    }
+      button {
+        border: none;
+        background-color: #FAFAFA;
+      }
+      * {
+        width:220px;
+        height:60px;
+        border-radius: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
   
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      right:148px;
-      z-index: 9;
-      top: 88px;
-      padding:0px;
-      margin:0px;
+      a {
+        font-size:24px;
+        text-decoration: none;
+        color:inherit;
+      }
   
-      .next_button {
-        border:none;
-        background-color: transparent;
+      *:hover {
+        cursor: pointer;
+      }
+      .read {
+        background-color:#E92233;
+        color:white;
+      }
+  
+      .desc {
+        color: #ED2736;
+        background-color: #F8F8F8;
+        border-style: solid;
+        border-color: #E92233;
       }
     }
-  } 
+    
+  }
+
+  .swiperControl {
+    position: absolute;
+    width:fit-content;
+    right:148px;
+    z-index: 9;
+    top: 88px;
+    padding:0px;
+    margin:0px;
+
+    .next_button {
+      border:none;
+      background-color: transparent;
+    }
+  }
+} 
 
   @media (max-width:1440px){
     .magazineCollection__section {
@@ -462,255 +462,378 @@ swiper-slide {
     }
   }
   
-  @media (max-width:1280px){
-    .magazineCollection__section {
-      margin-top: 50px;
-    }
-    .displayGrid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap:32px;
-    }
-    .swiper-box {
-      display: flex;
-      flex-direction: column;
+@media (max-width:1280px){
+  .magazineCollection__section {
+    margin-top: 50px;
+  }
+  .displayGrid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap:32px;
+  }
+  .swiper-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 100px;
+    gap:20px;
+  }
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
       width: 100%;
-      padding:0px 100px;
-      gap:20px;
+      height: 282px;
     }
-    .sampulMagazine__container {
-      .sampulMagazine__hoverBox {
-        width: 100%;
-        height: 282px;
+    h1 {
+      font-size:36px;
+      font-family: verdana;
+      font-weight: 600;
+    }
+    p {
+      font-size:20px;
+      font-family: verdana;
+      width: 100%;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
+    }
+    .sampulPDF1 {
+      width:100%;
+      height:282px;
+    }
+    .sampulPDF2 {
+      width: 190px;
+      height: 282px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .swiperSlide__buttons {
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(0, 0, 0, 0.55);
+      display: none;
+      position:absolute;
+      top:0px;
+      margin: 0px !important;
+      width:200px;
+      height:280px;
+      gap:20px;
+      justify-content: center;
+      align-items: center;
+      
+      button {
+        border: none;
+        background-color: #FAFAFA;
       }
-      h1 {
-        font-size:36px;
-        font-family: verdana;
-        font-weight: 600;
-      }
-      p {
-        font-size:20px;
-        font-family: verdana;
-        width: 100%;
-      }
-      h3 {
-        font-size: 2rem;
-        font-weight:700;
-      }
-      .sampulPDF1 {
-        width:100%;
-        height:282px;
-      }
-      .sampulPDF2 {
-        width: 190px;
-        height: 282px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .swiperSlide__buttons {
-        -webkit-backdrop-filter: blur(20px);
-        background-color: rgba(0, 0, 0, 0.55);
-        display: none;
-        position:absolute;
-        top:0px;
-        margin: 0px !important;
-        width:200px;
-        height:280px;
-        gap:20px;
+      * {
+        width:180px;
+        height:50px;
+        border-radius: 40px;
+        display: flex;
         justify-content: center;
         align-items: center;
-        
-        button {
-          border: none;
-          background-color: #FAFAFA;
-        }
-        * {
-          width:180px;
-          height:50px;
-          border-radius: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-    
-        a {
-          font-size:20px;
-          text-decoration: none;
-          color:inherit;
-        }
-    
-        *:hover {
-          cursor: pointer;
-        }
-        .read {
-          background-color:#E92233;
-          color:white;
-        }
-    
-        .desc {
-          color: #ED2736;
-          background-color: #F8F8F8;
-          border-style: solid;
-          border-color: #E92233;
-        }
       }
+  
+      a {
+        font-size:20px;
+        text-decoration: none;
+        color:inherit;
+      }
+  
+      *:hover {
+        cursor: pointer;
+      }
+      .read {
+        background-color:#E92233;
+        color:white;
+      }
+  
+      .desc {
+        color: #ED2736;
+        background-color: #F8F8F8;
+        border-style: solid;
+        border-color: #E92233;
+      }
+    }
+    
+  }
+
+  .swiperControl {
+    position: absolute;
+    width:fit-content;
+    right:98px;
+    z-index: 9;
+    top: 88px;
+    padding:0px;
+    margin:0px;
+
+    .next_button {
+      border:none;
+      background-color: transparent;
+    }
+  }
+}
+@media (max-width:1024px){
+  .magazineCollection__section {
+    margin-top: 50px;
+  }
+  .displayGrid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap:32px;
+  }
+  .swiper-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 72px;
+    gap:20px;
+    select {
+      padding: 8px;
+      font-size: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100px;
+    }
+    
+    /* Style the options */
+    option {
+        font-size: 16px;
+        background-color: #fff;
+    }
+    h1 {
+      font-size: 28px;
+    }
+  }
+
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
+      width: 100%;
+      height: 282px;
+    }
+    h1 {
+      font-size:28px;
+      font-family: verdana;
+      font-weight: 600;
+    }
+    p {
+      font-size:20px;
+      font-family: verdana;
+      width: 100%;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
+    }
+    .sampulPDF1 {
+      width:100%;
+      height:282px;
+    }
+    .sampulPDF2 {
+      width: 190px;
+      height: 282px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .swiperSlide__buttons {
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(0, 0, 0, 0.55);
+      display: none;
+      position:absolute;
+      top:0px;
+      margin: 0px !important;
+      width:200px;
+      height:280px;
+      gap:20px;
+      justify-content: center;
+      align-items: center;
       
-    }
+      button {
+        border: none;
+        background-color: #FAFAFA;
+      }
+      * {
+        width:180px;
+        height:50px;
+        border-radius: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
   
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      right:98px;
-      z-index: 9;
-      top: 88px;
-      padding:0px;
-      margin:0px;
+      a {
+        font-size:20px;
+        text-decoration: none;
+        color:inherit;
+      }
   
-      .next_button {
-        border:none;
-        background-color: transparent;
+      *:hover {
+        cursor: pointer;
+      }
+      .read {
+        background-color:#E92233;
+        color:white;
+      }
+  
+      .desc {
+        color: #ED2736;
+        background-color: #F8F8F8;
+        border-style: solid;
+        border-color: #E92233;
       }
     }
+    
+  }
+
+  .swiperControl {
+    position: absolute;
+    width:fit-content;
+    right:98px;
+    z-index: 9;
+    top: 88px;
+    padding:0px;
+    margin:0px;
+
+    .next_button {
+      border:none;
+      background-color: transparent;
+    }
+  }
 }
   
-  
-  @media (max-width:821px){
-    .displayGrid {
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap:20px;
+@media (max-width:820px){
+  .displayGrid {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:20px;
+  }
+  .swiper-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 50px;
+    gap:20px;
+    select {
+      padding: 8px;
+      font-size: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 120px;
     }
-    .swiper-box {
-      display: flex;
-      flex-direction: column;
+    
+    /* Style the options */
+    option {
+        font-size: 16px;
+        background-color: #fff;
+    }
+    
+    /* Style the selected option */
+    select:focus {
+        outline: none;
+        border-color: #007BFF;
+    }
+    h1 {
+      font-size:24px;
+      font-family: verdana;
+      font-weight: 600;
+    }
+    p {
+      font-size:16px;
+      font-family: verdana;
       width: 100%;
-      padding:0px 50px;
-      gap:20px;
-      select {
-        padding: 8px;
-        font-size: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 120px;
-      }
-      
-      /* Style the options */
-      option {
-          font-size: 16px;
-          background-color: #fff;
-      }
-      
-      /* Style the selected option */
-      select:focus {
-          outline: none;
-          border-color: #007BFF;
-      }
-      h1 {
-        font-size:24px;
-        font-family: verdana;
-        font-weight: 600;
-      }
-      p {
-        font-size:16px;
-        font-family: verdana;
-        width: 100%;
-      }
-      h3 {
-        font-size: 2rem;
-        font-weight:700;
-      }
-      
     }
-    .sampulMagazine__container {
-      .sampulMagazine__hoverBox {
-        width: 100%;
-        height: 240px;
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
+    }
+    
+  }
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
+      width: 100%;
+      height: 240px;
+    }
+    .sampulPDF1 {
+      width: 100%;
+      height: 240px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .sampulPDF2 {
+      width: 180px;
+      height: 240px;
+      box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
+    }
+    .swiperSlide__buttons {
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(0, 0, 0, 0.55);
+      display: none;
+      position:absolute;
+      top:0px;
+      margin: 0px !important;
+      width:200px;
+      height:280px;
+      gap:20px;
+      justify-content: center;
+      align-items: center;
+      
+      button {
+        border: none;
+        background-color: #FAFAFA;
       }
-      .sampulPDF1 {
-        width: 100%;
-        height: 240px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .sampulPDF2 {
-        width: 180px;
-        height: 240px;
-        box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.50);
-      }
-      .swiperSlide__buttons {
-        -webkit-backdrop-filter: blur(20px);
-        background-color: rgba(0, 0, 0, 0.55);
-        display: none;
-        position:absolute;
-        top:0px;
-        margin: 0px !important;
-        width:200px;
-        height:280px;
-        gap:20px;
+      * {
+        width:180px;
+        height:50px;
+        border-radius: 40px;
+        display: flex;
         justify-content: center;
         align-items: center;
-        
-        button {
-          border: none;
-          background-color: #FAFAFA;
-        }
-        * {
-          width:180px;
-          height:50px;
-          border-radius: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-    
-        a {
-          font-size:20px;
-          text-decoration: none;
-          color:inherit;
-        }
-    
-        *:hover {
-          cursor: pointer;
-        }
-        .read {
-          background-color:#E92233;
-          color:white;
-        }
-    
-        .desc {
-          color: #ED2736;
-          background-color: #F8F8F8;
-          border-style: solid;
-          border-color: #E92233;
-        }
       }
-      
-    }
-    .mySwiper {
-      p {
-        width:180px;
+  
+      a {
+        font-size:20px;
+        text-decoration: none;
+        color:inherit;
+      }
+  
+      *:hover {
+        cursor: pointer;
+      }
+      .read {
+        background-color:#E92233;
+        color:white;
+      }
+  
+      .desc {
+        color: #ED2736;
+        background-color: #F8F8F8;
+        border-style: solid;
+        border-color: #E92233;
       }
     }
-  
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      right:48px;
-      z-index: 9;
-      top: 82px;
-      padding:0px;
-      margin:0px;
-      
-      img {
-        width:auto;
-        height:200px;
-      }
-      .next_button {
-        border:none;
-        background-color: transparent;
-      }
-    }
-  
-  
+    
   }
+  .mySwiper {
+    p {
+      width:180px;
+    }
+  }
+
+  .swiperControl {
+    position: absolute;
+    width:fit-content;
+    right:48px;
+    z-index: 9;
+    top: 82px;
+    padding:0px;
+    margin:0px;
+    
+    img {
+      width:auto;
+      height:200px;
+    }
+    .next_button {
+      border:none;
+      background-color: transparent;
+    }
+  }
+}
 
 @media (max-width:520px){
   .magazineCollection__section {
@@ -853,142 +976,142 @@ swiper-slide {
   
 }
 
-  @media (max-width:432px){
-    .displayGrid {
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
+@media (max-width:432px){
+  .displayGrid {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:12px;
+  }
+  .swiper-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding:0px 20px;
+    gap:20px;
+    select {
+      padding: 8px;
+      font-size: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 56px;
+      padding:2px;
+      height:100%;
     }
-    .swiper-box {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding:0px 20px;
-      gap:20px;
-      select {
-        padding: 8px;
+    
+    /* Style the options */
+    option {
         font-size: 12px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 56px;
-        padding:2px;
-        height:100%;
-      }
-      
-      /* Style the options */
-      option {
-          font-size: 12px;
-          background-color: #fff;
-      }
-      
-      /* Style the selected option */
-      select:focus {
-          outline: none;
-          border-color: #007BFF;
-      }
-      h1 {
-        font-size:14px;
-        font-family: verdana;
-        font-weight: 600;
-      }
-      p {
-        font-size:9px;
-        font-family: verdana;
-        width: 100%;
-      }
-      h3 {
-        font-size: 2rem;
-        font-weight:700;
-      }
+        background-color: #fff;
     }
-    .sampulMagazine__container {
-      .sampulMagazine__hoverBox {
-        width: 100%;
-        height: 240px;
-      }
-      .sampulPDF1 {
-        width: 100%;
-        height: 160px;
-        box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
-      }
-      .sampulPDF2 {
-        width: 110px;
-        height: 160px;
-        box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
-      }
-      .swiperSlide__buttons {
-        -webkit-backdrop-filter: blur(20px);
-        background-color: rgba(0, 0, 0, 0.55);
-        display: none;
-        position:absolute;
-        top:0px;
-        margin: 0px !important;
-        width:100%;
-        height:160px;
-        gap:20px;
-        justify-content: center;
-        align-items: center;
-        
-        button {
-          border: none;
-          background-color: #FAFAFA;
-        }
-        * {
-          width:100px;
-          height:30px;
-          border-radius: 20px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
     
-        a {
-          font-size:12px;
-          text-decoration: none;
-          color:inherit;
-        }
-    
-        *:hover {
-          cursor: pointer;
-        }
-        .read {
-          background-color:#E92233;
-          color:white;
-        }
-    
-        .desc {
-          color: #ED2736;
-          background-color: #F8F8F8;
-          border-style: solid;
-          border-color: #E92233;
-        }
-      }
-      
+    /* Style the selected option */
+    select:focus {
+        outline: none;
+        border-color: #007BFF;
     }
-    .mySwiper {
-      p {
-        width:110px;
-      }
+    h1 {
+      font-size:14px;
+      font-family: verdana;
+      font-weight: 600;
     }
-  
-    .swiperControl {
-      position: absolute;
-      width:fit-content;
-      right:18px;
-      z-index: 9;
-      top: 57px;
-      padding:0px;
-      margin:0px;
-      img {
-        width:auto;
-        height:130px;
-      }
-  
-      .next_button {
-        border:none;
-        background-color: transparent;
-      }
+    p {
+      font-size:9px;
+      font-family: verdana;
+      width: 100%;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight:700;
     }
   }
+  .sampulMagazine__container {
+    .sampulMagazine__hoverBox {
+      width: 100%;
+      height: 240px;
+    }
+    .sampulPDF1 {
+      width: 100%;
+      height: 150px;
+      box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
+    }
+    .sampulPDF2 {
+      width: 110px;
+      height: 150px;
+      box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.50);
+    }
+    .swiperSlide__buttons {
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(0, 0, 0, 0.55);
+      display: none;
+      position:absolute;
+      top:0px;
+      margin: 0px !important;
+      width:100%;
+      height:160px;
+      gap:20px;
+      justify-content: center;
+      align-items: center;
+      
+      button {
+        border: none;
+        background-color: #FAFAFA;
+      }
+      * {
+        width:100px;
+        height:30px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      a {
+        font-size:12px;
+        text-decoration: none;
+        color:inherit;
+      }
+  
+      *:hover {
+        cursor: pointer;
+      }
+      .read {
+        background-color:#E92233;
+        color:white;
+      }
+  
+      .desc {
+        color: #ED2736;
+        background-color: #F8F8F8;
+        border-style: solid;
+        border-color: #E92233;
+      }
+    }
+    
+  }
+  .mySwiper {
+    p {
+      width:110px;
+    }
+  }
+
+  .swiperControl {
+    position: absolute;
+    width:fit-content;
+    right:18px;
+    z-index: 9;
+    top: 57px;
+    padding:0px;
+    margin:0px;
+    img {
+      width:auto;
+      height:120px;
+    }
+
+    .next_button {
+      border:none;
+      background-color: transparent;
+    }
+  }
+}
 
  

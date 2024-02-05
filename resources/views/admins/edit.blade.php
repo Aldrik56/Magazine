@@ -153,12 +153,20 @@
                                 <input type="text" name="edisi" id="edisi" value="{{$magazine->edisi}}">
                             </div>
                             <div >
-                                <label for="password" >Tebal</label>
+                                <label  >Tebal</label>
                                 <input type="text" name="tebal" id="tebal" value="{{$magazine->tebal}}">
                             </div>
                             <div >
-                                <label for="password" >Bahasa</label>
+                                <label >Bahasa</label>
                                 <input type="text" name="bahasa" id="bahasa" value="{{$magazine->bahasa}}">
+                            </div>
+                            <div >
+                                <label for="" >Embeded Video Youtube</label>
+                                <input type="text" name="bahasa" id="video" value="{{$magazine->video}}">
+                            </div>
+                            <div>
+                                <label for="" >Halaman dimana video itu muncul</label>
+                                <input type="text" name="bahasa" id="halamanVideo" value="{{$magazine->halamanVideo}}">
                             </div>
                             <div>
                                 <label >Sampul</label>
@@ -173,7 +181,7 @@
                         </div>
                     </div>   
                 </form>
-                <form id="deleteForm{{$magazine->id}}" action="/admin/{{$magazine->id}}" style="display:none" method="post">
+                <form id="deleteForm{{$magazine->id}}" action="/admin/delete/{{$magazine->id}}" style="display:none" method="post">
                     @method('DELETE')
                     @csrf
                     <button type="button" class="login__button" data-bs-toggle="modal" data-bs-target="#deleteModal{{$magazine->id}}">DELETE</button>

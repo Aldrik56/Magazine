@@ -26,8 +26,14 @@ Route::controller(VisitorController::class)->group(function () {
 // Route::get('/fetch-sorted-data', 'MagazineController@fetchSortedData');
 
 // define route untuk admin
-Route::resource('admin', AdminController::class);
-Route::get('admin/deskripsi/{id}', [AdminController::class, 'deskripsi'])->name('admins.deskripsi');
+Route::controller(AdminController::class)->group(function () {
+    Route::any('/admin', 'index')->name('admins.index');
+    Route::any('/admin/create','create')->name('admins.create');
+    Route::any('/admin/store','store');
+    Route::any('/admin/edit/{id}', 'edit')->name('admins.edit');
+    Route::any('/admin/delete/{id}','destroy');
+    Route::get('/admin/deskripsi/{id}','deskripsi')->name('admin.deskripsi');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

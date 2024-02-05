@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\List_magazines;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
 
 class AdminController extends Controller
 {
@@ -57,8 +59,10 @@ class AdminController extends Controller
         //     'nama'=>'required|max:50'
         // ]);
         $this->validate($request, [
-            'file' => 'required|mimes:pdf', // Max size in kilobytes
+            'file' => 'required|mimes:pdf', 
             'sampul' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg',
+            'video' => 'nullable|url',
+            'halamanVideo' => 'nullable|integer', 
             // Other validation rules...
         ],[
             'file.required'=>'File tidak boleh kosong',
@@ -67,14 +71,14 @@ class AdminController extends Controller
             'sampul.mimes'=>'Sampul harus berupa image',
 
         ]);
+        //Minta original name untuk file pdf
         $ext=$request->file('file')->extension();
-
         $originalFilename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = $originalFilename . '_' . time() . '.' . $ext;
         $path = $request->file('file')->storePubliclyAs('files', $newFilename, 'public');
 
+        //Minta original name untuk file
         $ext=$request->file('sampul')->extension();
-
         $originalFilename = pathinfo($request->file('sampul')->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = $originalFilename . '_' . time() . '.' . $ext;
         $path2 = $request->file('sampul')->storePubliclyAs('sampuls', $newFilename, 'public');
@@ -85,11 +89,13 @@ class AdminController extends Controller
         $magazine->edisi=$request->edisi;
         $magazine->tebal=$request->tebal;
         $magazine->bahasa=$request->bahasa;
+        $magazine->video = $request->has('video') ? $request->video : null;
+        $magazine->halamanVideo = $request->has('halamanVideo') ? $request->halamanVideo : null;
         $magazine->file = $path;
         $magazine->sampul = $path2;
         $magazine->save();
-        return redirect('/admin');
-        // return "Berhasil menyimpan data admin dengan id=".$admin->id;
+
+        return view('admins.create');
     }
 
     /**
@@ -144,9 +150,11 @@ class AdminController extends Controller
         $magazine->edisi=$request->edisi;
         $magazine->tebal=$request->tebal;
         $magazine->bahasa=$request->bahasa;
+        $magazine->video = $request->video;
+        $magazine->halamanVideo = $request->halamanVideo;
 
         $this->validate($request, [
-            'file' => 'mimes:pdf' . (200 * 1024), // Max size in kilobytes
+            'file' => 'mimes:pdf', // Max size in kilobytes
             'sampul' => 'image|mimes:jpeg,png,jpg,gif,webp,svg',
             // Other validation rules...
         ],[
@@ -178,7 +186,7 @@ class AdminController extends Controller
             $originalFilename = pathinfo($request->file('sampul')->getClientOriginalName(), PATHINFO_FILENAME);
             $newFilename = $originalFilename . '_' . time() . '.' . $ext;
             $path2 = $request->file('sampul')->storePubliclyAs('sampuls', $newFilename, 'public');
-            $magazine->sampule = $path2;
+            $magazine->sampul = $path2;
         }
         $magazine->save();
         return redirect('/admin');
@@ -197,7 +205,7 @@ class AdminController extends Controller
             // Get the file path from the database
             $filePath = $magazine->file;
             $filePath2 = $magazine->sampul;
-    
+        
             // Delete the file from storage if it exists
             if (Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);

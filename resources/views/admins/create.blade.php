@@ -77,7 +77,7 @@
         box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
         -webkit-transition: border .15s linear,box-shadow .15s linear;
         -o-transition: border .15s linear,box-shadow .15s linear;
-        transition: border .15s linear,box-shadow .15s linear; */
+        transition: border .15s linear,box-shadow .15s linear; 
     }
     .upload__form textarea {
         /* padding:0px 20px; */
@@ -98,7 +98,7 @@
         box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
         -webkit-transition: border .15s linear,box-shadow .15s linear;
         -o-transition: border .15s linear,box-shadow .15s linear;
-        transition: border .15s linear,box-shadow .15s linear; */
+        transition: border .15s linear,box-shadow .15s linear;
     }
     .login__section__judul {
         color: #ffffff;
@@ -140,7 +140,7 @@
                 alert("{{$message}}");
             </script>
         @enderror
-        <form action="/admin" method="POST" id="upload__form" class="upload__form" enctype="multipart/form-data">
+        <form action="/admin/store" method="POST" id="upload__form" class="upload__form" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="email">Judul</label>
@@ -155,7 +155,7 @@
                 <input type="text" name="edisi" id="edisi">
             </div>
             <div >
-                <label for="password" >Tebal</label>
+                <label for="password" >Tebal (isi angka saja)</label>
                 <input type="text" name="tebal" id="tebal" required>
             </div>
             <div >
@@ -163,7 +163,15 @@
                 <input type="text" name="bahasa" id="bahasa" required>
             </div>
             <div>
-                <label >Sampul buku (png,jpg,jpeg, dsb.)</label>
+                <label for="video">Video</label>
+                <input type="text" name='video' id="video">
+            </div>
+            <div>
+                <label for="halamanVideo">Halaman dimana video berada</label>
+                <input type="halaman video" name='halamanVideo' id="video">
+            </div>
+            <div>
+                <label >Thumbnail/Sampul buku (png,jpg,jpeg, dsb.)</label>
                 <input type="file" class="input_file" name="sampul" id="sampul">
             </div>
             <div>

@@ -10,7 +10,6 @@ $red : #E92233;
         display: flex; /* or any other style you want for the active menu */
       }
       
-      /* You might also need a style for the initial/inactive state */
       .nav__menu {
         display: none; /* or other styles */
       }
@@ -61,9 +60,7 @@ $red : #E92233;
 @media(max-width:1560px){
     .nav__user {
         background: #F9F9F9;
-        // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        // padding:20px 0px;
-    
+
         #hamburger-menu {
             display: none;
         }
@@ -165,6 +162,42 @@ $red : #E92233;
             align-items: center;
             justify-content: space-between;
             padding:16px 100px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            img {
+                width:250px;
+                height:auto;
+            }
+    
+            .nav__menu__desktop {
+                display: flex;
+                gap:40px;
+    
+                a {
+                    text-decoration: none;
+                    color:$red;
+                    font-size:22px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:1024px){
+    .nav__user {
+        background: #F9F9F9;
+    
+        #hamburger-menu {
+            display: none;
+        }
+        .nav__menu__desktop {
+            display: flex;
+    
+        }
+        .nav__content {
+            display:flex;
+            width:100%;
+            align-items: center;
+            justify-content: space-between;
+            padding:16px 72px;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             img {
                 width:250px;

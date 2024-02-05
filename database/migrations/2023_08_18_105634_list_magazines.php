@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('edisi');
             $table->integer('tebal');
             $table->string('bahasa');
+            $table->string('video')->nullable();
+            $table->string('halamanVideo')->nullable();
             $table->string('sampul');
             $table->string('file')->nullable();
             $table->timestamps();

@@ -256,7 +256,7 @@
         @for($i = $count -1; $i >= 0; $i--)
             <div class="magazine_box">
                 <img class="sampul__img"src="{{URL::asset('storage/'.$list_magazine[$i]->sampul)}}" alt="">
-                {{-- <canvas id="the-canvas{{$i+1}}" class="flex-item"></canvas> --}}
+                <p style="width:250px;">{{$list_magazine[$i]->judul}}</p>
                 <div class='swiperSlide__buttons' style='flex-direction:column;justify-content:center'>
                     <button class='read'>
                         <strong><a class="admin_a" href='/pdf/{{$list_magazine[$i]->id}}'>Read</a></strong>
@@ -265,7 +265,7 @@
                         <strong><a class="admin_a" href='/admin/deskripsi/{{$list_magazine[$i]->id}}'>Detail</a></strong>
                     </button>
                     <button class="desc">
-                        <strong><a class="admin_a" href='/admin/{{$list_magazine[$i]->id}}/edit'>Edit</a></strong>
+                        <strong><a class="admin_a" href='/admin/edit/{{$list_magazine[$i]->id}}'>Edit</a></strong>
                     </button>
                 </div>
             </div>

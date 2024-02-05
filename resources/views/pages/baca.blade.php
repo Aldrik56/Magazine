@@ -4,8 +4,8 @@
 <body class="main__page">
     @include('components.loading')
     @include('components.navbar')
-
     <main controls id="main"> 
+        {{-- magazine --}}
         <div class="main_top">
             <div class="magazine_section">
                 <div id="magazine"class="animated">
@@ -13,13 +13,47 @@
                 </div>
             </div>
         </div>
+        {{-- modal --}}
+        <div class="modal" id="embededVideoModal" aria-labelledby="uploadModalLabel" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <button type="button" style="visibility:hidden"class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <img src="{{URL::asset('assets/VideoIcon.svg')}}" alt="">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h1>Info!</h1>
+                    <p style="font-size:16px">Hey, there is a cool video in this PDF. Don't miss it!</p>
+                    <button class="clickHere" data-bs-dismiss="modal" aria-label="Close"><a href="#embededVideo_section">Click here 🡓</a></button>
+                </div>
+              </div>
+            </div>
+        </div>
+        {{-- modal tutor dragging --}}
+        <div class="modal" id="tutorDragModal" aria-labelledby="uploadModalLabel" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <img src="{{URL::asset('assets/ilustrasiMagz.svg')}}"class="ilustrasiMagz" alt="">
+                        <img src="{{URL::asset('assets/cursorGrab.svg')}}" class="cursorGrab"alt="">
+                    </div>
+                    <h1>Tips!</h1>
+                    <p style="font-size:16px">Hey, if you feel the magazine position is uncomfortable to read after zooming in or out, feel free to drag it to re-adjust the position</p>
+                    <button class="clickHere" data-bs-dismiss="modal" aria-label="Close"><a>I understand</a></button>
+                </div>
+              </div>
+            </div>
+        </div>
+        {{-- control button --}}
         <div class="control_section">
             <div class="prev_button">
                     <img src="{{URL::asset('assets/arrow_left.svg')}}" alt="">
                 </div>
             <div class="pagenumber__control">
                 <p class="current__page">1</p>
-                
+
                 <p>/</p>
                 <p class="total__page"></p>
                 <input type="range" class="page__slider" min="1" max="100" value="1" step="1"/>
@@ -38,14 +72,25 @@
             </div>
         </div>
     </main>
+    {{-- embeded video --}}
+    @if ($magazine->video)
+        <div class="embededVideo_section" id="embededVideo_section"> 
+            <iframe
+                src={{$magazine->video}} title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+        </div>
+    @endif
+
     @include('components.swiper')
+    @include('components.footer')
     @include('components.globalScript')
 
     <script src="{{ URL::asset('libraryJs/pdf.js') }}" type="text/javascript"></script>
     <script src="{{URL::asset('js/loading.js')}}" type="text/javascript"></script>
     <script src="{{ URL::asset('libraryJs/turn.js') }}" type="text/javascript"></script>
     <script id="script">
-        // import pdfjsLib from 'pdfjs-dist';
+
         $(function() {
             pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.js';    
         });
@@ -131,8 +176,13 @@
         var prev_button = document.querySelector('.prev_button');
         var next_button = document.querySelector('.main_next_button');
         var page__slider = document.querySelector('.page__slider');
+        var embeded__video__modal = document.querySelector('#embededVideoModal');
+        var tutorDragModal = document.querySelector('#tutorDragModal');
 
+        var videoPageModalTriggered = false;
+        var tutorDragModalTriggered = false;
 
+        //drag magazine
         var dragStartX, dragStartY;
         var scrollStartLeft, scrollStartTop;
         var isDragging = false;
@@ -143,6 +193,7 @@
             dragStartY = e.clientY || e.touches[0].clientY ;
             scrollStartLeft = magazine_section.scrollLeft;
             scrollStartTop = main_top.scrollTop;
+            magazine_section.style.cursor = "grabbing";
         });
         magazine_section.addEventListener('mousemove', (e)=>{
             if(isDragging){
@@ -150,6 +201,7 @@
                 var clientY = e.clientY || e.touches[0].clientY;
                 magazine_section.scrollLeft = scrollStartLeft - clientX + dragStartX;
                 magazine_section.scrollTop = scrollStartTop - clientY + dragStartY;
+                magazine_section.style.cursor = "grabbing";
             }
         });
 
@@ -172,6 +224,7 @@
 
         magazine_section.addEventListener('mouseup', (e)=>{
             isDragging = false;
+            magazine_section.style.cursor = "default";
         });
 
         // all event listener
@@ -182,6 +235,12 @@
             const value = (e.target.value - e.target.min) / (e.target.max - e.target.min);
             const percent = value * 100;
             e.target.style.background = `linear-gradient(to right, #ED2736 ${percent}%, white ${percent}%)`;
+
+            if(!tutorDragModalTriggered){
+                tutorDragModalTriggered = true;
+                const modal = new bootstrap.Modal(tutorDragModal);
+                modal.show();
+            }
         });
 
         zoom__control__zoomin.addEventListener('click', () => {
@@ -191,6 +250,11 @@
             if(scale<400 ){
                 magazine.style.zoom = scale/100;
             }
+            if(!tutorDragModalTriggered){
+                tutorDragModalTriggered = true;
+                const modal = new bootstrap.Modal(tutorDragModal);
+                modal.show();
+            }
 
         });
         zoom__control__zoomout.addEventListener('click', (e) => {
@@ -199,6 +263,11 @@
             e.target.value = scale;
             if(scale<400 ){
                 magazine.style.zoom = scale/100;
+            }
+            if(!tutorDragModalTriggered){
+                tutorDragModalTriggered = true;
+                const modal = new bootstrap.Modal(tutorDragModal);
+                modal.show();
             }
         });
         page__slider.addEventListener('input', (e)=>{
@@ -265,6 +334,13 @@
                 setStyleMobile(page);
             }else {
                 setStyleLaptop(page);
+            }
+
+            if((page===url.halamanVideo || page===url.halamanVideo+1 || page===url.halamanVideo-1 ) && !videoPageModalTriggered){
+                console.log(url.halamanVideo)
+                videoPageModalTriggered = true;
+                const modal = new bootstrap.Modal(embeded__video__modal);
+                modal.show();
             }
         });
 
