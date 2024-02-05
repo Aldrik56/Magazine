@@ -76,7 +76,7 @@ nav .nav__menu > *:hover {
   flex-wrap: wrap;
   word-wrap: break-word;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
 }
@@ -99,7 +99,7 @@ nav .nav__menu > *:hover {
   margin-top: 20px;
   display: flex;
   width: 100%;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
 }
@@ -148,7 +148,7 @@ nav .nav__menu > *:hover {
 .swiper .magazines {
   --swiperIndex:0;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   overflow: hidden;
   max-width: 1250px;
